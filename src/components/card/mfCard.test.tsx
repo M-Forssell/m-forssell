@@ -11,8 +11,8 @@ describe('MfCard', () => {
 	it('applies variant className', () => {
 		const { container } = render(<MfCard variant="filled">Content</MfCard>);
 		const card = container.firstChild;
-		expect(card).toHaveClass('mfCard');
-		expect(card).toHaveClass('mfCard--filled');
+		expect(card).toHaveClass('mf-card');
+		expect(card).toHaveClass('mf-card--filled');
 	});
 
 	it('renders without children', () => {

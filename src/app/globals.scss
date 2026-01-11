@@ -1,60 +1,63 @@
-@use '../foundation/color.scss';
-//@import 'https://a.storyblok.com/f/212319/x/e6ccda03b8/blueprint-blank.css';
+@use '../foundation/color';
+
+// @import 'https://a.storyblok.com/f/212319/x/e6ccda03b8/blueprint-blank.css';
 
 /* Theme colors using CSS custom properties */
 :root {
 	/* Light theme (default) */
-	--color-background: hsl(0, 0%, 100%);
-	--color-foreground: hsl(0, 0%, 10%);
-	--color-primary: hsl(16.71, 100%, 50%);
-	--color-secondary: hsl(0, 0%, 45%);
-	--color-border: hsl(0, 0%, 85%);
-	--color-card-bg: hsl(0, 0%, 98%);
-	--color-muted: hsl(0, 0%, 60%);
+	--color-background: hsl(0 0% 100%);
+	--color-foreground: hsl(0 0% 10%);
+	--color-primary: hsl(16.71 100% 50%);
+	--color-secondary: hsl(0 0% 45%);
+	--color-border: hsl(0 0% 85%);
+	--color-card-bg: hsl(0 0% 98%);
+	--color-muted: hsl(0 0% 60%);
 }
 
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
 	:root {
-		--color-background: hsl(0, 0%, 10%);
-		--color-foreground: hsl(0, 0%, 95%);
-		--color-primary: hsl(16.71, 100%, 55%);
-		--color-secondary: hsl(0, 0%, 70%);
-		--color-border: hsl(0, 0%, 25%);
-		--color-card-bg: hsl(0, 0%, 15%);
-		--color-muted: hsl(0, 0%, 50%);
+		--color-background: hsl(0 0% 10%);
+		--color-foreground: hsl(0 0% 95%);
+		--color-primary: hsl(16.71 100% 55%);
+		--color-secondary: hsl(0 0% 70%);
+		--color-border: hsl(0 0% 25%);
+		--color-card-bg: hsl(0 0% 15%);
+		--color-muted: hsl(0 0% 50%);
 	}
 }
 
 /* Manual theme override (when user explicitly chooses) */
 [data-theme='light'] {
-	--color-background: hsl(0, 0%, 100%);
-	--color-foreground: hsl(0, 0%, 10%);
-	--color-primary: hsl(16.71, 100%, 50%);
-	--color-secondary: hsl(0, 0%, 45%);
-	--color-border: hsl(0, 0%, 85%);
-	--color-card-bg: hsl(0, 0%, 98%);
-	--color-muted: hsl(0, 0%, 60%);
+	--color-background: hsl(0 0% 100%);
+	--color-foreground: hsl(0 0% 10%);
+	--color-primary: hsl(16.71 100% 50%);
+	--color-secondary: hsl(0 0% 45%);
+	--color-border: hsl(0 0% 85%);
+	--color-card-bg: hsl(0 0% 98%);
+	--color-muted: hsl(0 0% 60%);
 }
 
 [data-theme='dark'] {
-	--color-background: hsl(0, 0%, 10%);
-	--color-foreground: hsl(0, 0%, 95%);
-	--color-primary: hsl(16.71, 100%, 55%);
-	--color-secondary: hsl(0, 0%, 70%);
-	--color-border: hsl(0, 0%, 25%);
-	--color-card-bg: hsl(0, 0%, 15%);
-	--color-muted: hsl(0, 0%, 50%);
+	--color-background: hsl(0 0% 10%);
+	--color-foreground: hsl(0 0% 95%);
+	--color-primary: hsl(16.71 100% 55%);
+	--color-secondary: hsl(0 0% 70%);
+	--color-border: hsl(0 0% 25%);
+	--color-card-bg: hsl(0 0% 15%);
+	--color-muted: hsl(0 0% 50%);
 }
 
 /* Apply theme colors globally */
 body {
+	background-color: var(--color-background);
+	color: var(--color-foreground);
 	font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI',
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
-	background-color: var(--color-background);
-	color: var(--color-foreground);
+	/* Prevent layout shift */
+	min-height: 100vh;
+	/* Smooth transitions for theme changes */
 	transition: background-color 0.3s ease, color 0.3s ease;
 }

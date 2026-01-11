@@ -52,6 +52,6 @@ describe('Teaser', () => {
 		const { container } = render(<Teaser blok={mockBlok} />);
 		const article = container.querySelector('article');
 		expect(article).toBeInTheDocument();
-		expect(article).toHaveClass('mfCard--outlined');
+		expect(article).toHaveClass('mf-card--outlined');
 	});
 });

@@ -2,8 +2,8 @@
 
 .h-tag {
 	font-optical-sizing: auto;
-	line-height: 1.5;
 	font-weight: 400;
+	line-height: 1.5;
 
 	&--sm {
 		@include typography.fluid-font(1rem, 1.5rem);
@@ -18,9 +18,9 @@
 	}
 
 	&--underlined span {
+		border-bottom: 0.25rem solid var(--color-primary);
 		display: inline-block;
 		margin-top: 0.25rem;
-		border-bottom: 0.25rem solid var(--color-primary);
 		padding-bottom: 0.25rem;
 	}
 }

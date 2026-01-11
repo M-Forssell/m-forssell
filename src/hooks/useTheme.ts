@@ -9,12 +9,13 @@ export function useTheme() {
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
-		setMounted(true);
+		// Reduce render delay by deferring non-critical work
 		const stored = localStorage.getItem('theme') as Theme | null;
 		if (stored) {
 			setTheme(stored);
-			applyTheme(stored);
+			// Theme is already applied by inline script in layout
 		}
+		setMounted(true);
 	}, []);
 
 	const applyTheme = (newTheme: Theme) => {

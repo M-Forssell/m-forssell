@@ -9,6 +9,31 @@ type PageParams = {
 	}>;
 };
 
+// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
+export const revalidate = 60;
+
+// Generate static params for common routes
+export async function generateStaticParams() {
+	if (process.env.STORYBLOK_VERSION !== 'published') {
+		return [];
+	}
+
+	try {
+		const storyblokApi = getStoryblokApi();
+		const { data } = await storyblokApi.get('cdn/stories', {
+			version: 'published',
+			per_page: 100,
+		});
+
+		return data.stories.map((story: { full_slug: string }) => ({
+			slug: story.full_slug === 'home' ? undefined : story.full_slug.split('/'),
+		}));
+	} catch (error) {
+		console.error('Failed to generate static params:', error);
+		return [];
+	}
+}
+
 export default async function Page({ params }: PageParams) {
 	const { slug } = await params;
 	const fullSlug = slug ? slug.join('/') : 'home';
@@ -16,6 +41,7 @@ export default async function Page({ params }: PageParams) {
 		version: (process.env.STORYBLOK_VERSION || 'draft') as
 			| 'draft'
 			| 'published',
+		cv: process.env.STORYBLOK_VERSION === 'published' ? Date.now() : undefined,
 	};
 
 	const storyblokApi = getStoryblokApi();

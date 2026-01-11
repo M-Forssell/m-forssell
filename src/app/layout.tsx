@@ -14,9 +14,30 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const currentYear = new Date().getFullYear();
 	return (
 		<html lang="sv" className={inter.variable} suppressHydrationWarning>
+			<head>
+				{/* Critical resource hints */}
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
+				{/* Inline critical theme script */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							try {
+								const theme = localStorage.getItem('theme');
+								if (theme && theme !== 'system') {
+									document.documentElement.setAttribute('data-theme', theme);
+								}
+							} catch (e) {}
+						`,
+					}}
+				/>
+			</head>
 			<body>
 				<StoryblokProvider>
 					<header>
@@ -24,7 +45,7 @@ export default function RootLayout({
 						<ThemeToggle />
 					</header>
 					{children}
-					<footer>All rights reserved © {currentYear} </footer>
+					<footer>All rights reserved © 2026 </footer>
 				</StoryblokProvider>
 			</body>
 		</html>

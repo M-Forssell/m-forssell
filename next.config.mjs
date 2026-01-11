@@ -7,6 +7,16 @@ const nextConfig = {
 		STORYBLOK_API_BASE_URL: process.env.STORYBLOK_API_BASE_URL,
 		STORYBLOK_REGION: process.env.STORYBLOK_REGION,
 	},
+	// Performance optimizations
+	compress: true,
+	poweredByHeader: false,
+	images: {
+		formats: ['image/avif', 'image/webp'],
+	},
+	// Experimental optimizations
+	experimental: {
+		optimizePackageImports: ['@storyblok/react'],
+	},
 	// Enable importing SVGs as React components via SVGR, while supporting `?url` imports.
 	webpack: (config) => {
 		// Grab the existing rule that handles SVG imports

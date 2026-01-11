@@ -7,6 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"lint:styles": "stylelint \"**/*.{css,scss}\"",
+		"lint:styles:fix": "stylelint \"**/*.{css,scss}\" --fix",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:ui": "vitest --ui",
@@ -36,6 +38,10 @@
 		"happy-dom": "^20.1.0",
 		"jsdom": "^27.4.0",
 		"sass": "^1.97.2",
+		"stylelint": "^16.26.1",
+		"stylelint-config-standard-scss": "^16.0.0",
+		"stylelint-order": "^7.0.1",
+		"stylelint-scss": "^6.14.0",
 		"typescript": "^5.9.3",
 		"vitest": "^4.0.16"
 	}

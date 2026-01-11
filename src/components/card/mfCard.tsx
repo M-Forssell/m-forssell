@@ -5,7 +5,7 @@ type CardProps = {
 	children: React.ReactNode;
 	variant?: 'filled' | 'elevated' | 'outlined' | 'default';
 };
-const baseClass = 'mfCard';
+const baseClass = 'mf-card';
 export default function Card({ children, variant = 'default' }: CardProps) {
 	const cx = classNames.bind(styles);
 

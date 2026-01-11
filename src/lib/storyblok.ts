@@ -24,5 +24,10 @@ export const getStoryblokApi = storyblokInit({
 		region,
 		/** The following code is only required when creating a Storyblok space directly via the Blueprints feature. */
 		endpoint: apiBaseUrl ? `${new URL(apiBaseUrl).origin}/v2` : undefined,
+		/** Enable caching for better performance */
+		cache: {
+			clear: 'auto',
+			type: 'memory',
+		},
 	},
 });

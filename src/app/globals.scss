@@ -56,8 +56,10 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
 	/* Prevent layout shift */
 	min-height: 100vh;
+
 	/* Smooth transitions for theme changes */
 	transition: background-color 0.3s ease, color 0.3s ease;
 }

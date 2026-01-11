@@ -9,6 +9,7 @@
 		"no-descending-specificity": null,
 		"scss/selector-no-redundant-nesting-selector": true,
 		"at-rule-no-unknown": null,
-		"hue-degree-notation": "number"
+		"hue-degree-notation": "number",
+		"selector-class-pattern": "^(?:[a-z0-9]+(?:-[a-z0-9]+)*|[a-z][a-zA-Z0-9]*)$"
 	}
 }

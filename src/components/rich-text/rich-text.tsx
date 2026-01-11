@@ -137,6 +137,14 @@ function renderNode(
 		);
 	}
 
+	// Self-closing nodes (no content)
+	if (node.type === 'horizontal_rule') {
+		return <hr key={index} />;
+	}
+	if (node.type === 'hard_break') {
+		return <br key={index} />;
+	}
+
 	// Only RichTextNode has content property
 	if (!('content' in node)) {
 		return null;
@@ -170,10 +178,6 @@ function renderNode(
 					<code>{content}</code>
 				</pre>
 			);
-		case 'horizontal_rule':
-			return <hr key={index} />;
-		case 'hard_break':
-			return <br key={index} />;
 		default:
 			return null;
 	}

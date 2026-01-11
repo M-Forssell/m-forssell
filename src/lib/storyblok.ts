@@ -1,8 +1,8 @@
-import Page from '@/bloks/Page';
-import Feature from '@/bloks/Feature';
-import Grid from '@/bloks/Grid';
-import Teaser from '@/bloks/Teaser';
-import Heading from '@/bloks/Heading';
+import Page from '@/bloks/page/Page';
+import Feature from '@/bloks/feature/Feature';
+import Grid from '@/bloks/grid/Grid';
+import Teaser from '@/bloks/teaser/Teaser';
+import Heading from '@/bloks/heading/Heading';
 import { apiPlugin, storyblokInit } from '@storyblok/react';
 
 const accessToken = process.env.STORYBLOK_DELIVERY_API_TOKEN;

@@ -22,7 +22,7 @@ export interface StoryblokLink {
 }
 
 // Rich text content type (Storyblok document structure)
-import type { RichTextNode } from '@/components/rich-text/rich-text';
+import type { RichTextNode } from '@/components/rich-text/rich-text-types';
 
 export interface RichTextContent {
 	type: 'doc';
@@ -46,6 +46,7 @@ export interface PageBlok extends BaseBlok {
 export interface FeatureBlok extends BaseBlok {
 	component: 'feature';
 	name: string;
+	variant?: 'outlined' | 'filled' | 'underlined' | '';
 	content?: RichTextContent;
 }
 
@@ -59,6 +60,9 @@ export interface GridBlok extends BaseBlok {
 export interface TeaserBlok extends BaseBlok {
 	component: 'teaser';
 	headline: string;
+	headlineSize?: 'sm' | 'md' | 'lg';
+	headlineSuffix?: string;
+	variant?: 'outlined' | 'filled' | '';
 	content?: RichTextContent;
 	media?: StoryblokAsset;
 	assets?: StoryblokAsset;

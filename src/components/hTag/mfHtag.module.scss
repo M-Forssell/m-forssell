@@ -4,6 +4,7 @@
 	font-optical-sizing: auto;
 	font-weight: 400;
 	line-height: 1.5;
+	color: var(--color-heading);
 
 	&--sm {
 		@include typography.fluid-font(1rem, 1.5rem);
@@ -18,9 +19,15 @@
 	}
 
 	&--underlined span {
-		border-bottom: 0.125rem solid var(--color-primary);
+		border-bottom: 0.025rem solid var(--color-primary);
 		display: inline-block;
 		margin-top: 0.25rem;
 		padding-bottom: 0.25rem;
+	}
+
+	&--suffix {
+		color: var(--color-orange);
+		text-shadow: 0 0 1.3rem var(--color-orange);
+		display: block;
 	}
 }

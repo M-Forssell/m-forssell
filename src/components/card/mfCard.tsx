@@ -1,12 +1,15 @@
 import styles from './mfCard.module.scss';
 import classNames from 'classnames/bind';
-
+import { CardVariants, CardVariant } from '@/types/componentTypes';
 type CardProps = {
 	children: React.ReactNode;
-	variant?: 'filled' | 'elevated' | 'outlined' | 'default';
+	variant?: CardVariants;
 };
 const baseClass = 'mf-card';
-export default function Card({ children, variant = 'default' }: CardProps) {
+export default function Card({
+	children,
+	variant = CardVariant.default,
+}: CardProps) {
 	const cx = classNames.bind(styles);
 
 	const cardClass = cx({

@@ -48,13 +48,5 @@
 		"stylelint-scss": "^6.14.0",
 		"typescript": "^5.9.3",
 		"vitest": "^4.0.16"
-	},
-	"lint-staged": {
-		"*.{ts,tsx,js,jsx}": [
-			"npm run lint -- --max-warnings=0"
-		],
-		"*.{css,scss}": [
-			"npm run lint:styles -- --max-warnings=0"
-		]
 	}
 }

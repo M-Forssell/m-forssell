@@ -1,57 +1,76 @@
 @use '../foundation/color';
+@use '../foundation/device-width.scss' as device-width;
 
 // @import 'https://a.storyblok.com/f/212319/x/e6ccda03b8/blueprint-blank.css';
 
 /* Theme colors using CSS custom properties */
+
 :root {
 	/* Light theme (default) */
-	--color-background: hsl(0 0% 100%);
-	--color-foreground: hsl(0 0% 10%);
-	--color-primary: hsl(16.71 100% 50%);
-	--color-secondary: hsl(0 0% 45%);
-	--color-border: hsl(0 0% 85%);
-	--color-card-bg: hsl(0 0% 98%);
-	--color-muted: hsl(0 0% 60%);
+	--color-black-900: hsl(0 0% 12%);
+	--color-black-800: hsl(0 0% 7%);
+	--color-black-700: hsl(0 0% 4%);
+	--color-white: hsl(0 0% 100%);
+	--color-orange: hsl(16.71 100% 50%);
+	--color-gray-100: hsl(0 0% 98%);
+	--color-gray-200: hsl(0 0% 85%);
+	--color-gray-300: hsl(0 0% 90%);
+	--color-gray-400: hsl(0 0% 60%);
+	--color-gray-500: hsl(0 0% 50%);
+	--color-gray-600: hsl(0 0% 45%);
+	--color-gray-700: hsl(0 0% 25%);
+	--color-gray-800: hsl(0 0% 15%);
+	--color-background: var(--color-white);
+	--color-foreground: var(--color-black-900);
+	--color-heading: var(--color-black-900);
+	--color-primary: var(--color-orange);
+	--color-secondary: var(--color-gray-600);
+	--color-border: var(--color-gray-500);
+	--color-card-bg: var(--color-gray-100);
+	--color-muted: var(--color-gray-500);
 }
 
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
 	:root {
-		--color-background: hsl(0 0% 10%);
-		--color-foreground: hsl(0 0% 95%);
-		--color-primary: hsl(16.71 100% 55%);
-		--color-secondary: hsl(0 0% 70%);
-		--color-border: hsl(0 0% 25%);
-		--color-card-bg: hsl(0 0% 15%);
-		--color-muted: hsl(0 0% 50%);
+		--color-background: var(--color-black-700);
+		--color-foreground: var(--color-gray-400);
+		--color-heading: var(--color-gray-200);
+		--color-secondary: var(--color-gray-600);
+		--color-border: var(--color-gray-500);
+		--color-card-bg: var(--color-black-700);
+		--color-muted: var(--color-gray-500);
 	}
 }
 
 /* Manual theme override (when user explicitly chooses) */
 [data-theme='light'] {
-	--color-background: hsl(0 0% 100%);
-	--color-foreground: hsl(0 0% 10%);
-	--color-primary: hsl(16.71 100% 50%);
-	--color-secondary: hsl(0 0% 45%);
-	--color-border: hsl(0 0% 85%);
-	--color-card-bg: hsl(0 0% 98%);
-	--color-muted: hsl(0 0% 60%);
+	--color-background: var(--color-white);
+	--color-foreground: var(--color-black-900);
+	--color-heading: var(--color-black-900);
+	--color-primary: var(--color-orange);
+	--color-border: var(--color-gray-500);
+	--color-card-bg: var(--color-gray-100);
+	--color-muted: var(--color-gray-500);
 }
 
 [data-theme='dark'] {
-	--color-background: hsl(0 0% 10%);
-	--color-foreground: hsl(0 0% 95%);
-	--color-primary: hsl(16.71 100% 55%);
-	--color-secondary: hsl(0 0% 70%);
-	--color-border: hsl(0 0% 25%);
-	--color-card-bg: hsl(0 0% 15%);
-	--color-muted: hsl(0 0% 50%);
+	--color-background: var(--color-black-700);
+	--color-foreground: var(--color-gray-400);
+	--color-heading: var(--color-gray-200);
+	--color-secondary: var(--color-gray-600);
+	--color-border: var(--color-gray-500);
+	--color-card-bg: var(--color-black-700);
+	--color-muted: var(--color-gray-500);
 }
 
 /* Apply theme colors globally */
 body {
-	background-color: var(--color-background);
-	color: var(--color-foreground);
+	max-width: device-width.$content-width-max;
+	margin: 0 auto;
+	background: var(--color-background);
+
+	// color: var(--color-foreground);
 	font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI',
 		sans-serif;
 	-webkit-font-smoothing: antialiased;

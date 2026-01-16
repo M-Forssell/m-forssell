@@ -1,21 +1,29 @@
 import { JSX } from 'react';
 import styles from './mfHtag.module.scss';
 import classNames from 'classnames/bind';
+import {
+	HeadingLevels,
+	HeadingLevel,
+	HSizes,
+	HSize,
+} from '@/types/componentTypes';
 
 export type HProps = {
-	tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-	size?: 'sm' | 'md' | 'lg';
+	tag?: HeadingLevels;
+	size?: HSizes;
 	variant?: 'underlined';
 	children: any;
+	suffix?: string;
 };
 
 const baseClass = 'h-tag';
 
 export default function H({
 	children,
-	tag = 'h2',
-	size = 'md',
+	tag = HeadingLevel.h2,
+	size = HSize.md,
 	variant,
+	suffix,
 }: HProps) {
 	const cx = classNames.bind(styles);
 	const hTagClass = cx({
@@ -23,10 +31,12 @@ export default function H({
 		[`${baseClass}--${size}`]: true,
 		[`${baseClass}--${variant}`]: !!variant,
 	});
+	const suffixClass = cx(`${baseClass}--suffix`);
 	const Tag = `${tag}` as keyof JSX.IntrinsicElements;
 	return (
 		<Tag className={hTagClass}>
 			<span>{children}</span>
+			{suffix && <span className={suffixClass}>{suffix}</span>}
 		</Tag>
 	);
 }

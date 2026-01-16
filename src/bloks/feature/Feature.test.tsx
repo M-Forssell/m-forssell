@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Feature from './Feature';
 import type { FeatureBlok } from '@/types/storyblok';
+import { CardVariant, CardVariants } from '@/types/componentTypes';
+import Card from '@/components/card/mfCard';
 
 // Mock storyblokEditable
 vi.mock('@storyblok/react', () => ({
@@ -46,5 +48,31 @@ describe('Feature', () => {
 		};
 		render(<Feature blok={blokWithoutContent} />);
 		expect(screen.getByText('Test Feature')).toBeInTheDocument();
+	});
+	it('applies correct variant to HTag and Card', () => {
+		const blokWithVariant: FeatureBlok = {
+			...mockBlok,
+			variant: 'underlined',
+		};
+		render(<Feature blok={blokWithVariant} />);
+		const heading = screen.getByRole('heading', { name: 'Test Feature' });
+		expect(heading).toHaveClass('h-tag--underlined');
+	});
+
+	it('applies correct variant to Card for all card variants', () => {
+		const cardVariants: CardVariants[] = CardVariant
+			? Object.values(CardVariant)
+			: [];
+
+		cardVariants.forEach((variant) => {
+			const blokWithVariant: FeatureBlok = {
+				...mockBlok,
+				variant: variant,
+			};
+			const { getByRole, unmount } = render(<Feature blok={blokWithVariant} />);
+			const card = getByRole('article');
+			expect(card).toHaveClass(`mf-card--${variant}`);
+			unmount();
+		});
 	});
 });

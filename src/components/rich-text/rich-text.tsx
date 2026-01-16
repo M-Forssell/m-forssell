@@ -1,64 +1,25 @@
 import type { ReactNode } from 'react';
 import Image from 'next/image';
+import styles from './rich-text.module.scss';
+import {
+	PSizes,
+	PSize,
+	HSizes,
+	HSize,
+	HeadingLevels,
+	MarkTypes,
+	MarkType,
+	RichTextNodeTypes,
+	RichTextNodeType,
+} from '@/types/componentTypes';
+import { RichTextNode, TextNode, ImageNode } from './rich-text-types';
+import classNames from 'classnames/bind';
 
-// Rich text node types
-export type Mark = {
-	type:
-		| 'bold'
-		| 'italic'
-		| 'underline'
-		| 'strike'
-		| 'code'
-		| 'link'
-		| 'styled'
-		| 'textStyle';
-	attrs?: {
-		href?: string;
-		target?: string;
-		linktype?: string;
-		class?: string;
-		color?: string;
-	};
-};
-
-export type TextNode = {
-	type: 'text';
-	text: string;
-	marks?: Mark[];
-};
-
-export type ImageNode = {
-	type: 'image';
-	attrs: {
-		src: string;
-		alt?: string;
-		title?: string;
-	};
-};
-
-export type RichTextNode = {
-	type:
-		| 'paragraph'
-		| 'heading'
-		| 'blockquote'
-		| 'bullet_list'
-		| 'ordered_list'
-		| 'list_item'
-		| 'code_block'
-		| 'horizontal_rule'
-		| 'hard_break';
-	content?: Array<TextNode | ImageNode | RichTextNode>;
-	attrs?: {
-		level?: number;
-		class?: string;
-	};
-};
-
-type RichTextProps = {
+export type RichTextProps = {
 	content: RichTextNode[];
+	size?: PSizes;
 };
 
-// Render text with marks (bold, italic, links, etc.)
 function renderText(node: TextNode): ReactNode {
 	let text: ReactNode = node.text;
 
@@ -70,22 +31,22 @@ function renderText(node: TextNode): ReactNode {
 	for (let i = node.marks.length - 1; i >= 0; i--) {
 		const mark = node.marks[i];
 		switch (mark.type) {
-			case 'bold':
+			case MarkType.bold:
 				text = <strong>{text}</strong>;
 				break;
-			case 'italic':
+			case MarkType.italic:
 				text = <em>{text}</em>;
 				break;
-			case 'underline':
+			case MarkType.underline:
 				text = <u>{text}</u>;
 				break;
-			case 'strike':
+			case MarkType.strike:
 				text = <s>{text}</s>;
 				break;
-			case 'code':
+			case MarkType.code:
 				text = <code>{text}</code>;
 				break;
-			case 'link':
+			case MarkType.link:
 				text = (
 					<a
 						href={mark.attrs?.href}
@@ -100,10 +61,10 @@ function renderText(node: TextNode): ReactNode {
 					</a>
 				);
 				break;
-			case 'styled':
+			case MarkType.styled:
 				text = <span className={mark.attrs?.class}>{text}</span>;
 				break;
-			case 'textStyle':
+			case MarkType.textStyle:
 				text = <span style={{ color: mark.attrs?.color }}>{text}</span>;
 				break;
 		}
@@ -138,10 +99,10 @@ function renderNode(
 	}
 
 	// Self-closing nodes (no content)
-	if (node.type === 'horizontal_rule') {
+	if (node.type === RichTextNodeType.horizontal_rule) {
 		return <hr key={index} />;
 	}
-	if (node.type === 'hard_break') {
+	if (node.type === RichTextNodeType.hard_break) {
 		return <br key={index} />;
 	}
 
@@ -157,22 +118,22 @@ function renderNode(
 	);
 
 	switch (node.type) {
-		case 'paragraph':
+		case RichTextNodeType.paragraph:
 			return <p key={index}>{content}</p>;
-		case 'heading': {
+		case RichTextNodeType.heading: {
 			const level = node.attrs?.level || 1;
-			const HeadingTag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+			const HeadingTag = `h${level}` as HeadingLevels;
 			return <HeadingTag key={index}>{content}</HeadingTag>;
 		}
-		case 'blockquote':
+		case RichTextNodeType.blockquote:
 			return <blockquote key={index}>{content}</blockquote>;
-		case 'bullet_list':
+		case RichTextNodeType.bullet_list:
 			return <ul key={index}>{content}</ul>;
-		case 'ordered_list':
+		case RichTextNodeType.ordered_list:
 			return <ol key={index}>{content}</ol>;
-		case 'list_item':
+		case RichTextNodeType.list_item:
 			return <li key={index}>{content}</li>;
-		case 'code_block':
+		case RichTextNodeType.code_block:
 			return (
 				<pre key={index} className={node.attrs?.class}>
 					<code>{content}</code>
@@ -183,13 +144,18 @@ function renderNode(
 	}
 }
 
-export default function RichText({ content }: RichTextProps) {
+export default function RichText({ content, size = PSize.md }: RichTextProps) {
+	const cx = classNames.bind(styles);
+	const richTextClass = cx({
+		[`${styles.richText}`]: true,
+		[`${styles[`richText--${size}`]}`]: !!size,
+	});
 	if (!content || content.length === 0) {
 		return null;
 	}
 
 	return (
-		<div className="rich-text">
+		<div className={richTextClass}>
 			{content.map((node, index) => renderNode(node, index))}
 		</div>
 	);

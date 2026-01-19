@@ -58,6 +58,12 @@ export interface GridBlok extends BaseBlok {
 
 // Teaser blok
 export interface TeaserBlok extends BaseBlok {
+	iconName:
+		| 'building-shield'
+		| 'shop-lock'
+		| 'heart-pulse'
+		| 'graduation-cap'
+		| 'magnifying-glass';
 	component: 'teaser';
 	headline: string;
 	headlineSize?: 'sm' | 'md' | 'lg';

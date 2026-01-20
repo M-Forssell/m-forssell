@@ -21,6 +21,7 @@ export type IconProps = {
 	className?: string;
 };
 export function Icon({ iconName }: IconProps) {
+	//TODO: Move icon selector to lib
 	const icon = () => {
 		switch (iconName) {
 			case 'building-shield':

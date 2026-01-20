@@ -9,7 +9,7 @@ type FeatureProps = {
 };
 
 const Feature = ({ blok }: FeatureProps) => {
-	console.log('Feature blok:', blok);
+	//console.log('Feature blok:', blok);
 	const HVariant = blok.variant === 'underlined' ? 'underlined' : undefined;
 	const returnCardVariant = () => {
 		// return variant if it matches card variants

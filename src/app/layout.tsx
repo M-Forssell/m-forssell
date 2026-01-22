@@ -85,7 +85,7 @@ export default async function RootLayout({
 								},
 							],
 						}}
-						homeLink={global?.story?.content.homeLink}
+						homeLink={'/'}
 					/>
 					{children}
 					<footer>All rights reserved © 2026 </footer>

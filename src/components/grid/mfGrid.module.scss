@@ -1,15 +1,23 @@
+@use '../../foundation/breakpoints' as breakpoints;
+@use '../../foundation/device-width' as deviceWidth;
+
 .mfGrid {
 	display: grid;
 	gap: 1rem;
-	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
 	margin: 2rem 0;
+
+	@include breakpoints.breakpoint(deviceWidth.$screen-md) {
+		grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	}
 
 	&--cols-1 {
 		grid-template-columns: repeat(1, 1fr);
 	}
 
 	&--cols-2 {
-		grid-template-columns: repeat(2, 1fr);
+		@include breakpoints.breakpoint(deviceWidth.$screen-md) {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 
 	&--cols-3 {

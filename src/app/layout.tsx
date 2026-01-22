@@ -3,9 +3,9 @@ import StoryblokProvider from '../bloks/StoryblokProvider';
 import MfHeader from '@/components/header/mfHeader';
 import { inter } from './fonts';
 import { getStoryblokApi } from '@/lib/storyblok';
-import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
+//import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
 
-const storyblokApi = getStoryblokApi();
+//const storyblokApi = getStoryblokApi();
 
 export const metadata = {
 	title: 'M Forssell Säkerhetskonsult',
@@ -18,6 +18,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	// Get storyblok content global
+	/*
 	const global: StoryblokApiResponse<GlobalContent> | null = await storyblokApi
 		.get('cdn/stories/global/footer', {
 			version: 'draft',
@@ -30,6 +31,7 @@ export default async function RootLayout({
 			return null;
 		});
 
+	*/
 	//console.log('Global content in layout:', global?.story?.content.homeLink);
 	return (
 		<html lang="sv" className={inter.variable} suppressHydrationWarning>
@@ -60,10 +62,7 @@ export default async function RootLayout({
 			</head>
 			<body>
 				<StoryblokProvider>
-					<MfHeader
-						headerTitle={global?.story?.content.headerTitle}
-						homeLink={global?.story?.content.homeLink}
-					/>
+					<MfHeader headerTitle={'M.Forssell'} homeLink={'säkerhetskonsult'} />
 					{children}
 					<footer>All rights reserved © 2026 </footer>
 				</StoryblokProvider>

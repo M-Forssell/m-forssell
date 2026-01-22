@@ -2,17 +2,36 @@ import './globals.scss';
 import StoryblokProvider from '../bloks/StoryblokProvider';
 import MfHeader from '@/components/header/mfHeader';
 import { inter } from './fonts';
+import { getStoryblokApi } from '@/lib/storyblok';
+import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
+
+const storyblokApi = getStoryblokApi();
 
 export const metadata = {
 	title: 'M Forssell Säkerhetskonsult',
 	description: 'Oberoende säkerhetsexpertis med rötterna i verkligheten',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	// Get storyblok content global
+	/*
+	const global: StoryblokApiResponse<GlobalContent> | null = await storyblokApi
+		.get('cdn/stories/global/footer', {
+			version: 'draft',
+		})
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			console.error('Error fetching global content:', error);
+			return null;
+		});*/
+
+	//console.log('Global content in layout:', global?.story?.content.headerTitle);
 	return (
 		<html lang="sv" className={inter.variable} suppressHydrationWarning>
 			<head>
@@ -42,7 +61,32 @@ export default function RootLayout({
 			</head>
 			<body>
 				<StoryblokProvider>
-					<MfHeader />
+					<MfHeader
+						headerTitle={{
+							type: 'doc',
+							content: [
+								{
+									type: 'paragraph',
+									content: [
+										{
+											text: 'M.Forssell',
+											type: 'text',
+										},
+									],
+								},
+								{
+									type: 'paragraph',
+									content: [
+										{
+											text: 'Säkerhetskonsult',
+											type: 'text',
+										},
+									],
+								},
+							],
+						}}
+						homeLink={'/'}
+					/>
 					{children}
 					<footer>All rights reserved © 2026 </footer>
 				</StoryblokProvider>

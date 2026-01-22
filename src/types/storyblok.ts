@@ -1,3 +1,4 @@
+import type { CardVariants, HeadingLevels, HSizes } from './componentTypes';
 // Storyblok asset type
 export interface StoryblokAsset {
 	id: number | null;
@@ -46,7 +47,7 @@ export interface PageBlok extends BaseBlok {
 export interface FeatureBlok extends BaseBlok {
 	component: 'feature';
 	name: string;
-	variant?: 'outlined' | 'filled' | 'underlined' | '';
+	variant?: CardVariants;
 	content?: RichTextContent;
 }
 
@@ -58,11 +59,21 @@ export interface GridBlok extends BaseBlok {
 
 // Teaser blok
 export interface TeaserBlok extends BaseBlok {
+	iconName:
+		| 'building-shield'
+		| 'shop-lock'
+		| 'heart-pulse'
+		| 'graduation-cap'
+		| 'magnifying-glass'
+		| 'shield-halved'
+		| 'handshake'
+		| 'arrow-trend-up'
+		| 'shield';
 	component: 'teaser';
 	headline: string;
-	headlineSize?: 'sm' | 'md' | 'lg';
+	headlineSize?: HSizes;
 	headlineSuffix?: string;
-	variant?: 'outlined' | 'filled' | '';
+	variant?: CardVariants;
 	content?: RichTextContent;
 	media?: StoryblokAsset;
 	assets?: StoryblokAsset;
@@ -71,6 +82,12 @@ export interface TeaserBlok extends BaseBlok {
 
 // Union type of all bloks
 export type AnyBlok = PageBlok | FeatureBlok | GridBlok | TeaserBlok;
+
+// Global/Footer content type
+export interface GlobalContent {
+	headerTitle?: RichTextContent;
+	[key: string]: unknown;
+}
 
 // Story metadata
 export interface StoryblokStory<Content = AnyBlok> {
@@ -99,4 +116,10 @@ export interface StoryblokStory<Content = AnyBlok> {
 	translated_slugs: Array<{ lang: string; name: string; slug: string }>;
 	lang: string;
 	default_full_slug: string | null;
+}
+// Storyblok API response data structure
+export interface StoryblokApiResponse<Content = AnyBlok> {
+	story: StoryblokStory<Content>;
+	relations: Record<string, unknown>;
+	links: Record<string, unknown>;
 }

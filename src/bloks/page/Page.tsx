@@ -8,12 +8,15 @@ type PageProps = {
 	blok: PageBlok;
 };
 
-const Page = ({ blok }: PageProps) => (
-	<main {...storyblokEditable(blok)}>
-		{blok.body?.map((nestedBlok) => (
-			<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
-		))}
-	</main>
-);
+// Server component; no async needed because there is no data fetching here.
+const Page = ({ blok }: PageProps) => {
+	return (
+		<main {...storyblokEditable(blok)}>
+			{blok.body?.map((nestedBlok) => (
+				<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+			))}
+		</main>
+	);
+};
 
 export default Page;

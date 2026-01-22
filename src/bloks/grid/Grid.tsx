@@ -10,6 +10,7 @@ type GridProps = {
 };
 
 const Grid = ({ blok }: GridProps) => (
+	//console.log('Grid blok:', blok),
 	<MfGrid {...storyblokEditable(blok)}>
 		{blok.columns.map((nestedBlok) => (
 			<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />

@@ -1,7 +1,7 @@
 @use '../../foundation/typography.scss' as typography;
 
 .mfHeader {
-	color: var(--color-foreground);
+	color: var(--color-heading);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -9,12 +9,24 @@
 	margin-bottom: 3rem;
 
 	&--logo {
-		@include typography.fluid-font(1.25rem, 2rem);
+		@include typography.fluid-font(1.3rem, 1.75rem);
 
 		display: flex;
 		align-items: center;
 		gap: 1rem;
 		text-decoration: none;
-		color: var(--color-foreground);
+		color: var(--color-heading);
+	}
+
+	&--title {
+		display: flex;
+		flex-direction: column;
+		text-transform: uppercase;
+	}
+
+	&--title-line:last-child {
+		@include typography.fluid-font(0.875rem, 1rem);
+
+		color: var(--color-primary);
 	}
 }

@@ -9,7 +9,7 @@ type TeaserProps = {
 };
 
 const Teaser = ({ blok }: TeaserProps) => {
-	console.log('Teaser blok:', blok);
+	//console.log('Teaser blok:', blok);
 	return (
 		<Card variant="outlined" {...storyblokEditable(blok)}>
 			<HTag size={blok.headlineSize} suffix={blok.headlineSuffix}>

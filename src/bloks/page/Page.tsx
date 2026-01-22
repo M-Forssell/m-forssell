@@ -8,7 +8,8 @@ type PageProps = {
 	blok: PageBlok;
 };
 
-const Page = async ({ blok }: PageProps) => {
+// Server component; no async needed because there is no data fetching here.
+const Page = ({ blok }: PageProps) => {
 	return (
 		<main {...storyblokEditable(blok)}>
 			{blok.body?.map((nestedBlok) => (

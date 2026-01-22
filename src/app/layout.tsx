@@ -30,7 +30,7 @@ export default async function RootLayout({
 			return null;
 		});
 
-	console.log('Global content in layout:', global?.story?.content.homeLink);
+	//console.log('Global content in layout:', global?.story?.content.homeLink);
 	return (
 		<html lang="sv" className={inter.variable} suppressHydrationWarning>
 			<head>

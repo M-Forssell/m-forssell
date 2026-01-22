@@ -1,4 +1,4 @@
-import type { CardVariants, HeadingLevels } from './componentTypes';
+import type { CardVariants, HeadingLevels, HSizes } from './componentTypes';
 // Storyblok asset type
 export interface StoryblokAsset {
 	id: number | null;
@@ -71,7 +71,7 @@ export interface TeaserBlok extends BaseBlok {
 		| 'shield';
 	component: 'teaser';
 	headline: string;
-	headlineSize?: HeadingLevels;
+	headlineSize?: HSizes;
 	headlineSuffix?: string;
 	variant?: CardVariants;
 	content?: RichTextContent;

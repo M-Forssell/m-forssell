@@ -18,6 +18,14 @@
 		@include typography.fluid-font(1.5rem, 2.25rem);
 	}
 
+	&--xl {
+		@include typography.fluid-font(1.75rem, 3rem);
+	}
+
+	&--xxl {
+		@include typography.fluid-font(2rem, 3.5rem);
+	}
+
 	&--underlined span {
 		border-bottom: 0.025rem solid var(--color-primary);
 		display: inline-block;

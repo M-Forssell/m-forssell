@@ -6,6 +6,10 @@ import {
 	faGraduationCap,
 	faBuildingShield,
 	faMagnifyingGlass,
+	faHandshake,
+	faShieldHalved,
+	faArrowTrendUp,
+	faShield,
 } from '@fortawesome/free-solid-svg-icons';
 import './icon.modules.scss';
 const icons = [
@@ -14,6 +18,10 @@ const icons = [
 	'heart-pulse',
 	'graduation-cap',
 	'magnifying-glass',
+	'shield-halved',
+	'handshake',
+	'arrow-trend-up',
+	'shield',
 ] as const;
 
 export type IconProps = {
@@ -34,7 +42,14 @@ export function Icon({ iconName }: IconProps) {
 				return faGraduationCap;
 			case 'magnifying-glass':
 				return faMagnifyingGlass;
-
+			case 'handshake':
+				return faHandshake;
+			case 'shield-halved':
+				return faShieldHalved;
+			case 'arrow-trend-up':
+				return faArrowTrendUp;
+			case 'shield':
+				return faShield;
 			default:
 				return null;
 		}

@@ -10,11 +10,14 @@ type GridProps = {
 };
 
 const Grid = ({ blok }: GridProps) => (
-	<MfGrid {...storyblokEditable(blok)}>
-		{blok.columns.map((nestedBlok) => (
-			<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
-		))}
-	</MfGrid>
+	console.log('Grid blok:', blok),
+	(
+		<MfGrid {...storyblokEditable(blok)}>
+			{blok.columns.map((nestedBlok) => (
+				<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+			))}
+		</MfGrid>
+	)
 );
 
 export default Grid;

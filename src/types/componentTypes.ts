@@ -3,6 +3,7 @@ export const CardVariant = {
 	elevated: 'elevated',
 	outlined: 'outlined',
 	default: 'default',
+	hero: 'hero',
 } as const;
 
 export type CardVariants = (typeof CardVariant)[keyof typeof CardVariant];
@@ -22,6 +23,8 @@ export const HSize = {
 	sm: 'sm',
 	md: 'md',
 	lg: 'lg',
+	xl: 'xl',
+	xxl: 'xxl',
 } as const;
 
 export type HSizes = (typeof HSize)[keyof typeof HSize];

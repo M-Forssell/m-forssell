@@ -17,7 +17,7 @@ export default function RootLayout({
 		<html lang="sv" className={inter.variable} suppressHydrationWarning>
 			<head>
 				{/* Favicon */}
-				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+				<link rel="icon" href="/favicon.svg" type="image/x-icon" />
 				<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 				{/* Critical resource hints */}
 				<link rel="preconnect" href="https://fonts.googleapis.com" />

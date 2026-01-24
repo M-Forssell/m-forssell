@@ -1,0 +1,40 @@
+@use '@/foundation/device-width' as device-width;
+@use '@/foundation/breakpoints' as breakpoints;
+
+.page {
+	max-width: device-width.$content-width-max;
+	margin: 0 auto;
+	padding: 0 2rem;
+
+	> section {
+		gap: 2rem;
+	}
+
+	> article,
+	> section {
+		margin: 6rem 0;
+		position: relative;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+
+			&::after {
+				display: none;
+			}
+		}
+
+		&::after {
+			position: absolute;
+			content: '';
+			display: block;
+			width: 100%;
+			background-color: var(--color-border);
+			height: 0.025rem;
+			bottom: -3rem;
+		}
+	}
+}

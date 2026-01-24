@@ -1,12 +1,15 @@
 .mf-icon {
 	display: inline-flex;
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 1.2em;
+	max-width: 1.2em;
+	min-width: 1.2em;
+	height: 1.2em;
+	max-height: 1.2em;
+	min-height: 1.2em;
 	padding: 0.5rem;
 	border: 0.025rem solid var(--color-primary);
 	border-radius: 0.5rem;
 	background: hsl(16.71 100% 50% / 5%);
-	margin-right: 0.5rem;
 
 	path {
 		fill: var(--color-primary);

@@ -1,11 +1,8 @@
 import './globals.scss';
 import StoryblokProvider from '../bloks/StoryblokProvider';
 import MfHeader from '@/components/header/mfHeader';
+import MfFooter from '@/components/footer/mfFooter';
 import { inter } from './fonts';
-import { getStoryblokApi } from '@/lib/storyblok';
-import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
-
-const storyblokApi = getStoryblokApi();
 
 export const metadata = {
 	title: 'M Forssell Säkerhetskonsult',
@@ -61,34 +58,10 @@ export default async function RootLayout({
 			</head>
 			<body>
 				<StoryblokProvider>
-					<MfHeader
-						headerTitle={{
-							type: 'doc',
-							content: [
-								{
-									type: 'paragraph',
-									content: [
-										{
-											text: 'M.Forssell',
-											type: 'text',
-										},
-									],
-								},
-								{
-									type: 'paragraph',
-									content: [
-										{
-											text: 'Säkerhetskonsult',
-											type: 'text',
-										},
-									],
-								},
-							],
-						}}
-						homeLink={'/'}
-					/>
+					<MfHeader />
 					{children}
-					<footer>All rights reserved © 2026 </footer>
+
+					<MfFooter />
 				</StoryblokProvider>
 			</body>
 		</html>

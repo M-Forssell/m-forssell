@@ -18,8 +18,8 @@ describe('ThemeToggle', () => {
 		expect(button).toBeInTheDocument();
 	});
 
-	it('displays correct emoji for light theme', () => {
+	it('displays correct text for light theme', () => {
 		render(<ThemeToggle />);
-		expect(screen.getByText('🌙')).toBeInTheDocument();
+		expect(screen.getByText('dark')).toBeInTheDocument();
 	});
 });

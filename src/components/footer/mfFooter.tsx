@@ -26,26 +26,26 @@ const MfFooter = async () => {
 		<footer className={styles.mfFooter}>
 			<RichText
 				className={styles['mfFooter__content']}
-				content={global?.story?.content.content.content || []}
+				content={global?.story?.content.headerTitle?.content || []}
 			/>
 
 			<div className={styles['mfFooter__links']}>
 				<MfLink
-					href={global?.story?.content.footerLink?.email.url || '/'}
+					href={global?.story?.content.email?.url || '/'}
 					icon={faEnvelope}
 				>
-					{global?.story?.content.email.title || 'Footer Link'}
+					{global?.story?.content.email?.title || 'Email'}
 				</MfLink>
-				<MfLink href={global?.story?.content.phone.url || '/'} icon={faPhone}>
-					{global?.story?.content.phone.title || 'Phone'}
+				<MfLink href={global?.story?.content.phone?.url || '/'} icon={faPhone}>
+					{global?.story?.content.phone?.title || 'Phone'}
 				</MfLink>
 				<MfLink
-					href={global?.story?.content.social.url || '/'}
-					target={global?.story?.content.social.target || '_blank'}
+					href={global?.story?.content.social?.url || '/'}
+					target={global?.story?.content.social?.target || '_blank'}
 					rel="noopener noreferrer"
 					icon={faLinkedin}
 				>
-					{global?.story?.content?.social?.title || 'Social'}
+					{global?.story?.content.social?.title || 'Social'}
 				</MfLink>
 			</div>
 			{

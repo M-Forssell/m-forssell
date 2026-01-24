@@ -12,7 +12,7 @@ const storyblokApi = getStoryblokApi();
 const MfFooter = async () => {
 	const global: StoryblokApiResponse<GlobalContent> | null = await storyblokApi
 		.get('cdn/stories/global/footer', {
-			version: 'draft',
+			version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
 		})
 		.then((response) => {
 			return response.data;

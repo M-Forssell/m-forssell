@@ -17,10 +17,6 @@ export default function Card({
 	variantExtras,
 }: CardProps) {
 	const cx = classNames.bind(styles);
-	if (variantExtras) {
-		console.log(variantExtras);
-		//throw new Error('variantExtras must be an array of strings');
-	}
 
 	const cardClass = cx({
 		[`${className}`]: !!className,

@@ -26,7 +26,7 @@ const MfFooter = async () => {
 		<footer className={styles.mfFooter}>
 			<RichText
 				className={styles['mfFooter__content']}
-				content={global?.story?.content.headerTitle?.content || []}
+				content={(global?.story?.content as any)?.content?.content || []}
 			/>
 
 			<div className={styles['mfFooter__links']}>

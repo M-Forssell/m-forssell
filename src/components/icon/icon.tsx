@@ -28,7 +28,7 @@ export type IconProps = {
 	iconName: (typeof icons)[number];
 	className?: string;
 };
-export function Icon({ iconName }: IconProps) {
+export function Icon({ iconName, className }: IconProps) {
 	//TODO: Move icon selector to lib
 	const icon = () => {
 		switch (iconName) {
@@ -58,7 +58,7 @@ export function Icon({ iconName }: IconProps) {
 	//console.log('Icon rendered with icon:', icon());
 	if (icon() === null) return null;
 	return (
-		<span className="mf-icon">
+		<span className={`mf-icon ${className}`}>
 			<FontAwesomeIcon
 				icon={icon() as IconDefinition}
 				style={{ maxHeight: '100%', maxWidth: '100%' }}

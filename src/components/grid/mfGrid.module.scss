@@ -4,10 +4,9 @@
 .mfGrid {
 	display: grid;
 	gap: 1rem;
-	margin: 2rem 0;
 
 	@include breakpoints.breakpoint(deviceWidth.$screen-md) {
-		grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
 	}
 
 	&--cols-1 {
@@ -16,7 +15,7 @@
 
 	&--cols-2 {
 		@include breakpoints.breakpoint(deviceWidth.$screen-md) {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(15rem, 1fr));
 		}
 	}
 

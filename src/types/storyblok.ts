@@ -1,4 +1,9 @@
-import type { CardVariants, HeadingLevels, HSizes } from './componentTypes';
+import type {
+	CardVariants,
+	HeadingLevels,
+	HSizes,
+	IconNames,
+} from './componentTypes';
 // Storyblok asset type
 export interface StoryblokAsset {
 	id: number | null;
@@ -20,6 +25,8 @@ export interface StoryblokLink {
 	linktype: 'story' | 'url' | 'email' | 'asset';
 	fieldtype: 'multilink';
 	cached_url: string;
+	title?: string;
+	target?: '_blank' | '_self' | '_parent' | '_top';
 }
 
 // Rich text content type (Storyblok document structure)
@@ -55,29 +62,25 @@ export interface FeatureBlok extends BaseBlok {
 export interface GridBlok extends BaseBlok {
 	component: 'grid';
 	columns: Array<FeatureBlok | TeaserBlok>;
+	numberOfCols: 1 | 2 | 3 | 4;
 }
+
+export type CardVariantsExtra = 'align-center' | 'align-right';
 
 // Teaser blok
 export interface TeaserBlok extends BaseBlok {
-	iconName:
-		| 'building-shield'
-		| 'shop-lock'
-		| 'heart-pulse'
-		| 'graduation-cap'
-		| 'magnifying-glass'
-		| 'shield-halved'
-		| 'handshake'
-		| 'arrow-trend-up'
-		| 'shield';
+	iconName: IconNames;
 	component: 'teaser';
 	headline: string;
 	headlineSize?: HSizes;
 	headlineSuffix?: string;
+	headingLevel?: HeadingLevels;
 	variant?: CardVariants;
 	content?: RichTextContent;
 	media?: StoryblokAsset;
 	assets?: StoryblokAsset;
 	link?: StoryblokLink;
+	variantExtras?: Array<CardVariantsExtra>;
 }
 
 // Union type of all bloks
@@ -86,6 +89,11 @@ export type AnyBlok = PageBlok | FeatureBlok | GridBlok | TeaserBlok;
 // Global/Footer content type
 export interface GlobalContent {
 	headerTitle?: RichTextContent;
+	homeLink?: StoryblokLink;
+	email?: StoryblokLink;
+	phone?: StoryblokLink;
+	address?: string;
+	social?: StoryblokLink;
 	[key: string]: unknown;
 }
 

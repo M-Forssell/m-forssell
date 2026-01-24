@@ -4,7 +4,18 @@
 	"plugins": ["stylelint-scss"],
 	"ignoreFiles": ["dist/**", "public/**", "node_modules/**"],
 	"rules": {
-		"unit-allowed-list": ["%", "deg", "rem", "ms", "em", "s", "vh", "vw", "fr"],
+		"unit-allowed-list": [
+			"%",
+			"deg",
+			"rem",
+			"ms",
+			"em",
+			"s",
+			"vh",
+			"vw",
+			"fr",
+			"ch"
+		],
 		"scss/at-rule-no-unknown": true,
 		"no-descending-specificity": null,
 		"scss/selector-no-redundant-nesting-selector": true,

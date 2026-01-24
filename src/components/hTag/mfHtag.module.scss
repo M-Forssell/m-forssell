@@ -16,7 +16,7 @@
 	}
 
 	&--sm {
-		@include typography.fluid-font(1rem, 1.5rem);
+		@include typography.fluid-font(1rem, 1.25rem);
 	}
 
 	&--md {
@@ -24,15 +24,15 @@
 	}
 
 	&--lg {
-		@include typography.fluid-font(1.5rem, 2.25rem);
+		@include typography.fluid-font(1.5rem, 2.5rem);
 	}
 
 	&--xl {
-		@include typography.fluid-font(1.75rem, 2.75rem);
+		@include typography.fluid-font(1.75rem, 3rem);
 	}
 
 	&--xxl {
-		@include typography.fluid-font(2rem, 3rem);
+		@include typography.fluid-font(2rem, 3.5rem);
 	}
 
 	&--underlined span {
@@ -46,11 +46,13 @@
 		color: var(--color-orange);
 		text-shadow: 0 0 1.3rem var(--color-primary-transparent);
 		display: block;
+		font-size: 0.8em;
 	}
 
 	&--has-icon {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: 0.5rem;
 	}
 }

@@ -30,10 +30,14 @@
 		}
 	}
 
+	a {
+		@include typography.fluid-font(1rem, 1.2rem);
+	}
+
 	p,
 	h2,
 	h2 span {
-		@include typography.fluid-font(1rem, 1.2rem);
+		@include typography.fluid-font(1.2rem, 1.5rem);
 
 		margin: 0;
 		display: inline;

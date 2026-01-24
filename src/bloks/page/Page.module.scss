@@ -1,8 +1,10 @@
 @use '@/foundation/device-width' as device-width;
+@use '@/foundation/breakpoints' as breakpoints;
 
 .page {
 	max-width: device-width.$content-width-max;
 	margin: 0 auto;
+	padding: 0 2rem;
 
 	> section {
 		gap: 2rem;

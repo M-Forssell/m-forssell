@@ -30,23 +30,32 @@ const MfFooter = async () => {
 			/>
 
 			<div className={styles['mfFooter__links']}>
-				<MfLink
-					href={global?.story?.content.email?.url || '/'}
-					icon={faEnvelope}
-				>
-					{global?.story?.content.email?.title || 'Email'}
-				</MfLink>
-				<MfLink href={global?.story?.content.phone?.url || '/'} icon={faPhone}>
-					{global?.story?.content.phone?.title || 'Phone'}
-				</MfLink>
-				<MfLink
-					href={global?.story?.content.social?.url || '/'}
-					target={global?.story?.content.social?.target || '_blank'}
-					rel="noopener noreferrer"
-					icon={faLinkedin}
-				>
-					{global?.story?.content.social?.title || 'Social'}
-				</MfLink>
+				<span>
+					<MfLink
+						href={global?.story?.content.email?.url || '/'}
+						icon={faEnvelope}
+					>
+						{global?.story?.content.email?.title || 'Email'}
+					</MfLink>
+				</span>
+				<span>
+					<MfLink
+						href={global?.story?.content.phone?.url || '/'}
+						icon={faPhone}
+					>
+						{global?.story?.content.phone?.title || 'Phone'}
+					</MfLink>
+				</span>
+				<span>
+					<MfLink
+						href={global?.story?.content.social?.url || '/'}
+						target={global?.story?.content.social?.target || '_blank'}
+						rel="noopener noreferrer"
+						icon={faLinkedin}
+					>
+						{global?.story?.content.social?.title || 'Social'}
+					</MfLink>
+				</span>
 			</div>
 			{
 				//only show theme toggle if not in production

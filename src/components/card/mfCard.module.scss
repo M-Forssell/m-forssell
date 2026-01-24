@@ -1,8 +1,9 @@
-@use '../../foundation/color.scss' as color;
+@use '@/foundation/color.scss' as color;
+@use '@/foundation/breakpoints' as breakpoints;
+@use '@/foundation/device-width' as device-width;
 
 .mf-card {
 	border-radius: 0.5rem;
-	padding: 1rem;
 	transition:
 		background-color 0.3s ease,
 		border-color 0.3s ease;
@@ -17,6 +18,7 @@
 		background-color: color.$card-bg;
 		border: 0.025rem solid color.$border;
 		border-radius: 0.75rem;
+		padding: 1rem;
 	}
 
 	&--elevated {
@@ -24,12 +26,14 @@
 	}
 
 	&--align-center {
-		text-align: center;
+		@include breakpoints.breakpoint(device-width.$screen-md) {
+			text-align: center;
 
-		[class^='rich-text_'] {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
+			[class^='rich-text_'] {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
 		}
 	}
 }

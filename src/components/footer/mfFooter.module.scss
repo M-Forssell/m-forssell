@@ -1,20 +1,33 @@
-@use '../../foundation/typography' as typography;
+@use '@/foundation/typography' as typography;
+@use '@/foundation/device-width' as device-width;
+@use '@/foundation/breakpoints' as breakpoints;
 
 .mfFooter {
 	margin-top: 6rem;
-	padding: 3rem 0 6rem;
-	text-align: center;
+	padding: 3rem 2rem 6rem;
 	border-top: 0.025rem solid var(--color-border);
+	display: flex;
+	flex-direction: column;
+
+	@include breakpoints.breakpoint(device-width.$screen-lg) {
+		align-items: center;
+		text-align: center;
+	}
 
 	&__content {
 		margin-bottom: 2rem;
 	}
 
 	&__links {
-		display: flex;
-		justify-content: center;
-		gap: 1.5rem;
 		margin-top: 2rem;
+		display: inline-flex;
+		gap: 1rem;
+		flex-direction: column;
+
+		@include breakpoints.breakpoint(device-width.$screen-lg) {
+			gap: 1.5rem;
+			flex-direction: row;
+		}
 	}
 
 	p,

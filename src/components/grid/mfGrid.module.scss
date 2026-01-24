@@ -10,7 +10,8 @@
 	}
 
 	&--cols-1 {
-		grid-template-columns: repeat(1, 1fr);
+		display: flex;
+		flex-direction: column;
 	}
 
 	&--cols-2 {
@@ -24,6 +25,12 @@
 	}
 
 	&--cols-4 {
-		grid-template-columns: repeat(4, 1fr);
+		@include breakpoints.breakpoint(deviceWidth.$screen-sm) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include breakpoints.breakpoint(deviceWidth.$screen-md) {
+			grid-template-columns: repeat(4, 1fr);
+		}
 	}
 }

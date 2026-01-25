@@ -21,16 +21,6 @@
 
 /* Theme colors using CSS custom properties */
 
-@mixin dark-theme() {
-	--color-background: var(--color-black-700);
-	--color-foreground: var(--color-gray-400);
-	--color-heading: var(--color-gray-200);
-	--color-secondary: var(--color-gray-600);
-	--color-border: var(--color-gray-800);
-	--color-card-bg: var(--color-black-800);
-	--color-muted: var(--color-gray-500);
-}
-
 /* Light theme */
 @mixin light-theme() {
 	--color-primary-transparent: var(--color-orange-transparent);
@@ -41,6 +31,17 @@
 	--color-secondary: var(--color-gray-600);
 	--color-border: var(--color-gray-300);
 	--color-card-bg: var(--color-gray-100);
+	--color-muted: var(--color-gray-500);
+}
+
+/* Dark theme */
+@mixin dark-theme() {
+	--color-background: var(--color-black-700);
+	--color-foreground: var(--color-gray-400);
+	--color-heading: var(--color-gray-200);
+	--color-secondary: var(--color-gray-600);
+	--color-border: var(--color-gray-800);
+	--color-card-bg: var(--color-black-800);
 	--color-muted: var(--color-gray-500);
 }
 

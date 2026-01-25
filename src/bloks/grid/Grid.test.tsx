@@ -3,6 +3,13 @@ import { describe, it, expect, vi } from 'vitest';
 import Grid from './Grid';
 import type { GridBlok, TeaserBlok } from '@/types/storyblok';
 
+// Mock the teaser component
+vi.mock('@/bloks/teaser', () => ({
+	default: ({ blok }: { blok: any }) => (
+		<div data-testid="teaser">{blok.headline}</div>
+	),
+}));
+
 // Mock storyblokEditable and StoryblokComponent
 vi.mock('@storyblok/react', () => ({
 	storyblokEditable: () => ({}),

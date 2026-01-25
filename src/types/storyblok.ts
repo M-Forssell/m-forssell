@@ -62,14 +62,14 @@ export interface FeatureBlok extends BaseBlok {
 export interface GridBlok extends BaseBlok {
 	component: 'grid';
 	columns: Array<FeatureBlok | TeaserBlok>;
-	numberOfCols: 1 | 2 | 3 | 4;
+	numberOfCols?: 1 | 2 | 3 | 4;
 }
 
 export type CardVariantsExtra = 'align-center' | 'align-right';
 
 // Teaser blok
 export interface TeaserBlok extends BaseBlok {
-	iconName: IconNames;
+	iconName?: IconNames;
 	component: 'teaser';
 	headline: string;
 	headlineSize?: HSizes;

@@ -12,7 +12,7 @@ import {
 	faShield,
 	faClapperboard,
 } from '@fortawesome/free-solid-svg-icons';
-import { IconNames } from '../../types/componentTypes';
+import { IconNames, IconName } from '../../types/componentTypes';
 import './icon.modules.scss';
 
 export type IconProps = {
@@ -23,25 +23,25 @@ export function Icon({ iconName, className }: IconProps) {
 	//TODO: Move icon selector to lib
 	const icon = () => {
 		switch (iconName) {
-			case 'building-shield':
+			case IconName.buildingShield:
 				return faBuildingShield;
-			case 'shop-lock':
+			case IconName.shopLock:
 				return faShopLock;
-			case 'heart-pulse':
+			case IconName.heartPulse:
 				return faHeartPulse;
-			case 'graduation-cap':
+			case IconName.graduationCap:
 				return faGraduationCap;
-			case 'magnifying-glass':
+			case IconName.magnifyingGlass:
 				return faMagnifyingGlass;
-			case 'handshake':
+			case IconName.handshake:
 				return faHandshake;
-			case 'shield-halved':
+			case IconName.shieldHalved:
 				return faShieldHalved;
-			case 'arrow-trend-up':
+			case IconName.arrowTrendUp:
 				return faArrowTrendUp;
-			case 'shield':
+			case IconName.shield:
 				return faShield;
-			case 'clapperboard':
+			case IconName.clapperboard:
 				return faClapperboard;
 			default:
 				return null;

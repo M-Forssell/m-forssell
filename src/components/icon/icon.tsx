@@ -10,22 +10,13 @@ import {
 	faShieldHalved,
 	faArrowTrendUp,
 	faShield,
+	faClapperboard,
 } from '@fortawesome/free-solid-svg-icons';
+import { IconNames } from '../../types/componentTypes';
 import './icon.modules.scss';
-const icons = [
-	'building-shield',
-	'shop-lock',
-	'heart-pulse',
-	'graduation-cap',
-	'magnifying-glass',
-	'shield-halved',
-	'handshake',
-	'arrow-trend-up',
-	'shield',
-] as const;
 
 export type IconProps = {
-	iconName: (typeof icons)[number];
+	iconName: IconNames;
 	className?: string;
 };
 export function Icon({ iconName, className }: IconProps) {
@@ -50,6 +41,8 @@ export function Icon({ iconName, className }: IconProps) {
 				return faArrowTrendUp;
 			case 'shield':
 				return faShield;
+			case 'clapperboard':
+				return faClapperboard;
 			default:
 				return null;
 		}

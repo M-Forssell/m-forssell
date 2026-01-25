@@ -2,7 +2,7 @@
 
 .richText {
 	font-size: 1.2rem;
-	line-height: 1.6;
+	line-height: 1.4;
 	color: var(--color-foreground);
 
 	h1,
@@ -34,7 +34,7 @@
 	}
 
 	&--md {
-		@include typography.fluid-font(0.9rem, 1rem);
+		@include typography.fluid-font(1rem, 1.25rem);
 	}
 
 	&--lg {

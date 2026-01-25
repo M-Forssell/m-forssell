@@ -53,13 +53,15 @@ const MfHeader = async () => {
 					className={styles['mfHeader--logo']}
 				>
 					<SvgLogo aria-hidden="true" width="90" focusable="false" />
-					<span aria-hidden="true" className={styles['mfHeader--title']}>
-						{headerTitle?.content?.map((node, index) => (
-							<span key={index} className={styles['mfHeader--title-line']}>
-								{extractTextFromNode(node)}
-							</span>
-						))}
-					</span>
+					{headerTitle && Array.isArray(headerTitle.content) && (
+						<span aria-hidden="true" className={styles['mfHeader--title']}>
+							{headerTitle.content.map((node, index) => (
+								<span key={index} className={styles['mfHeader--title-line']}>
+									{extractTextFromNode(node)}
+								</span>
+							))}
+						</span>
+					)}
 				</Link>
 			</div>
 		</header>

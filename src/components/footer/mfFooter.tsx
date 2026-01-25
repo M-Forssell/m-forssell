@@ -36,9 +36,14 @@ const MfFooter = async () => {
 						>
 							{global?.story?.content.title || 'Footer'}
 						</H>
-						<RichText
-							content={(global?.story?.content as any)?.content?.content || []}
-						/>
+						{(global?.story?.content as any)?.content &&
+							Array.isArray(
+								(global?.story?.content as any).content.content,
+							) && (
+								<RichText
+									content={(global?.story?.content as any).content.content}
+								/>
+							)}
 					</div>
 
 					<div className={styles['mfFooter__links']}>

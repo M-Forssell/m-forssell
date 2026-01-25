@@ -42,10 +42,16 @@ export default function H({
 	const iconClass = cx(`${baseClass}__icon`);
 
 	const Tag = `${tag}` as keyof JSX.IntrinsicElements;
+	const safeSuffix = typeof suffix === 'string' ? suffix : undefined;
+	const safeChildren =
+		typeof children === 'string' || typeof children === 'number' || !children
+			? children
+			: String(children);
+
 	return (
 		<Tag className={hTagClass}>
-			<span className={contentClass}>{children}</span>
-			{suffix && <span className={suffixClass}>{suffix}</span>}
+			<span className={contentClass}>{safeChildren}</span>
+			{safeSuffix && <span className={suffixClass}>{safeSuffix}</span>}
 			{iconName && <Icon className={iconClass} iconName={iconName} />}
 		</Tag>
 	);

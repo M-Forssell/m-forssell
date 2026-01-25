@@ -123,10 +123,12 @@ function renderNode(
 	}
 
 	// Block nodes
-	const content = node.content?.map(
-		(child: TextNode | ImageNode | RichTextNode, i: number) =>
-			renderNode(child, i),
-	);
+	const content = Array.isArray(node.content)
+		? node.content.map(
+				(child: TextNode | ImageNode | RichTextNode, i: number) =>
+					renderNode(child, i),
+			)
+		: null;
 
 	switch (node.type) {
 		case RichTextNodeType.paragraph:
@@ -155,6 +157,8 @@ function renderNode(
 				</pre>
 			);
 		default:
+			// Return null for unknown node types to prevent rendering objects
+			console.warn('Unknown RichText node type:', (node as any).type);
 			return null;
 	}
 }
@@ -165,7 +169,8 @@ export default function RichText({ content, size = PSize.md }: RichTextProps) {
 		[`${styles.richText}`]: true,
 		[`${styles[`richText--${size}`]}`]: !!size,
 	});
-	if (!content || content.length === 0) {
+
+	if (!Array.isArray(content) || content.length === 0) {
 		return null;
 	}
 

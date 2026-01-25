@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { IconNames, IconName } from '../../types/componentTypes';
+import './icon.modules.scss';
 import {
 	faShopLock,
 	faHeartPulse,
@@ -12,8 +14,6 @@ import {
 	faShield,
 	faClapperboard,
 } from '@fortawesome/free-solid-svg-icons';
-import { IconNames, IconName } from '../../types/componentTypes';
-import './icon.modules.scss';
 
 export type IconProps = {
 	iconName: IconNames;

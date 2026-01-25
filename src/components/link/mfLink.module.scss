@@ -7,7 +7,9 @@
 	text-decoration: none;
 	color: var(--color-primary);
 	font-weight: 500;
-	transition: color 0.3s ease;
+	transition:
+		color 0.3s ease,
+		border-color 0.3s ease;
 	border-bottom: 0.05rem solid transparent;
 	position: relative;
 

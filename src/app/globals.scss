@@ -11,6 +11,7 @@
 	--color-orange-transparent: hsl(16.71 100% 50% / 60%);
 	--color-gray-100: hsl(0 0% 98%);
 	--color-gray-150: hsl(0 0% 96%);
+	--color-gray-175: hsl(0 0% 94%);
 	--color-gray-200: hsl(0 0% 85%);
 	--color-gray-300: hsl(0 0% 90%);
 	--color-gray-400: hsl(0 0% 60%);
@@ -25,13 +26,13 @@
 /* Light theme */
 @mixin light-theme() {
 	--color-primary-transparent: var(--color-orange-transparent);
-	--color-background: var(--color-gray-100);
-	--color-foreground: var(--color-black-900);
-	--color-heading: var(--color-black-900);
+	--color-background: var(--color-gray-150);
+	--color-foreground: var(--color-gray-600);
+	--color-heading: black;
 	--color-primary: var(--color-orange);
 	--color-secondary: var(--color-gray-600);
 	--color-border: var(--color-gray-300);
-	--color-card-bg: var(--color-gray-150);
+	--color-card-bg: var(--color-gray-175);
 	--color-muted: var(--color-gray-500);
 }
 

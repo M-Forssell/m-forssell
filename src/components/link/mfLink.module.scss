@@ -1,3 +1,5 @@
+@use '@/foundation/typography' as typography;
+
 .mfLink {
 	display: inline-flex;
 	align-items: center;
@@ -5,9 +7,13 @@
 	text-decoration: none;
 	color: var(--color-primary);
 	font-weight: 500;
-	transition: color 0.3s ease;
+	transition:
+		color 0.3s ease,
+		border-color 0.3s ease;
 	border-bottom: 0.05rem solid transparent;
 	position: relative;
+
+	$base: &;
 
 	&::after {
 		content: '';
@@ -29,13 +35,20 @@
 		}
 	}
 
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		align-items: flex-start;
+	}
+
 	&--external::after {
 		content: '↗';
 		font-size: 0.75em;
 		margin-left: 0.25rem;
 	}
 
-	&--icon {
+	&__icon {
 		display: inline-flex;
 		align-items: center;
 		height: 1.2em;
@@ -43,6 +56,40 @@
 
 		.mf-icon {
 			margin-right: 0.5rem;
+		}
+	}
+
+	&--contact {
+		padding: 1rem;
+		border: 0.063rem solid var(--color-border);
+		background-color: var(--color-card-bg);
+		border-radius: 0.5rem;
+		display: flex;
+		gap: 1rem;
+
+		&::after {
+			display: none;
+		}
+
+		&:hover {
+			border-color: var(--color-primary);
+		}
+
+		#{$base}__icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+
+		&__label {
+			@include typography.fluid-font(1rem, 1.2rem);
+
+			color: var(--color-heading);
+		}
+
+		&__value {
+			@include typography.fluid-font(1rem, 1.2rem);
+
+			color: var(--color-foreground);
 		}
 	}
 }

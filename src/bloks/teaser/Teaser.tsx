@@ -25,7 +25,9 @@ const Teaser = ({ blok }: TeaserProps) => {
 			>
 				{blok.headline}
 			</HTag>
-			<RichText content={blok.content?.content || []} />
+			{blok.content && Array.isArray(blok.content.content) && (
+				<RichText content={blok.content.content} />
+			)}
 		</Card>
 	);
 };

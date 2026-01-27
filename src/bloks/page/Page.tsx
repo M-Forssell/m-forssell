@@ -13,9 +13,10 @@ type PageProps = {
 const Page = ({ blok }: PageProps) => {
 	return (
 		<main {...storyblokEditable(blok)} className={styles.page}>
-			{blok.body?.map((nestedBlok) => (
-				<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
-			))}
+			{Array.isArray(blok.body) &&
+				blok.body.map((nestedBlok) => (
+					<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+				))}
 		</main>
 	);
 };

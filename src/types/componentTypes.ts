@@ -77,6 +77,7 @@ export const IconName = {
 	handshake: 'handshake',
 	arrowTrendUp: 'arrow-trend-up',
 	shield: 'shield',
+	clapperboard: 'clapperboard',
 } as const;
 
 export type IconNames = (typeof IconName)[keyof typeof IconName];

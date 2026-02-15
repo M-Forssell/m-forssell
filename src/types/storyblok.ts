@@ -61,7 +61,7 @@ export interface FeatureBlok extends BaseBlok {
 // Grid blok
 export interface GridBlok extends BaseBlok {
 	component: 'grid';
-	columns: Array<FeatureBlok | TeaserBlok>;
+	columns: Array<FeatureBlok | TeaserBlok | GridBlok>;
 	numberOfCols?: 1 | 2 | 3 | 4;
 }
 

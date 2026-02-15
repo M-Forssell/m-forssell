@@ -1,10 +1,34 @@
+import { cx } from 'happy-dom/lib/PropertySymbol';
 import styles from './mfGrid.module.scss';
+import classNames from 'classnames/bind';
 type GridProps = {
-	children: React.ReactNode;
-	numberOfColumns?: number;
+	numberOfColumns?: 1 | 2 | 3 | 4;
+	nested?: boolean;
+	children?: React.ReactNode;
 };
 
-export default function Grid({ children, numberOfColumns = 2 }: GridProps) {
-	const gridClasses = `${styles.mfGrid} ${styles[`mfGrid--cols-${numberOfColumns}`]}`;
-	return <section className={gridClasses}>{children}</section>;
+export default function Grid({
+	children,
+	numberOfColumns = 2,
+	nested = false,
+}: GridProps) {
+	if (numberOfColumns < 1 || undefined) {
+		numberOfColumns = 2;
+	}
+
+	const cx = classNames.bind(styles);
+
+	const gridClasses = cx({
+		[`${styles.mfGrid}`]: !nested,
+		[`${styles[`mfGrid--cols-${numberOfColumns}`]}`]: true && !nested,
+		[`${styles[`mfGrid--nested--cols-${numberOfColumns}`]}`]: nested,
+		[`${styles['mfGrid--nested']}`]: nested,
+	});
+
+	if (nested) {
+		return <section className={styles.container}><div className={gridClasses}>{children}</div></section>;
+	} else {
+		return <section className={gridClasses}>{children}</section>;
+	}
+
 }

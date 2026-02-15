@@ -77,6 +77,31 @@ describe('RichText', () => {
 		expect(em).toHaveTextContent('Italic text');
 	});
 
+	it('does not render color styled mark', () => {
+		const content: RichTextNode[] = [
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'Colored text',
+						marks: [
+							{
+								type: 'textStyle',
+								attrs: { color: '#ff0000' },
+							},
+						],
+					},
+				],
+			},
+		];
+		const { container } = render(<RichText content={content} />);
+		const paragraph = container.querySelector('p');
+		expect(paragraph).toBeInTheDocument();
+		expect(paragraph).toHaveTextContent('Colored text');
+		expect(paragraph).not.toHaveStyle('color: #ff0000');
+	});
+
 	it('renders link with href', () => {
 		const content: RichTextNode[] = [
 			{

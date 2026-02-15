@@ -71,13 +71,14 @@ function renderText(node: TextNode, index: number): ReactNode {
 					</span>
 				);
 				break;
+			/*
 			case MarkType.textStyle:
 				text = (
 					<span key={index} style={{ color: mark.attrs?.color }}>
 						{text}
 					</span>
 				);
-				break;
+				break;*/
 		}
 	}
 

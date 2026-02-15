@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Skellefteå",
+			"country": {
+				"code": "SE",
+				"name": "Sweden"
+			},
+			"subdivision": {
+				"code": "AC",
+				"name": "Västerbotten County"
+			},
+			"timezone": "Europe/Stockholm",
+			"latitude": 64.7472,
+			"longitude": 20.9529,
+			"postalCode": "931 35"
+		},
+		"timestamp": 1769359510782
+	}
+}

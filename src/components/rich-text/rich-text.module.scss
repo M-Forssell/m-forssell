@@ -2,15 +2,39 @@
 
 .richText {
 	font-size: 1.2rem;
-	line-height: 1.6;
+	line-height: 1.4;
 	color: var(--color-foreground);
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	p {
+		max-width: 75ch;
+	}
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+
+	&--xs {
+		@include typography.fluid-font(0.75rem, 0.875rem);
+	}
 
 	&--sm {
 		@include typography.fluid-font(0.9rem, 1rem);
 	}
 
 	&--md {
-		@include typography.fluid-font(1.1rem, 1.2rem);
+		@include typography.fluid-font(1rem, 1.25rem);
 	}
 
 	&--lg {
@@ -23,5 +47,24 @@
 		@include typography.fluid-font(1.5rem, 1.75rem);
 
 		line-height: 1.9;
+	}
+
+	blockquote {
+		border-left: 0.25rem solid var(--color-primary);
+		margin: 1.5rem 0;
+		padding-left: 1rem;
+		color: var(--color-foreground-secondary);
+		font-style: italic;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	/* stylelint-disable selector-class-pattern */
+	.mf-card--align-center__t9jBp & {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 }

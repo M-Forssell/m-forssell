@@ -3,7 +3,7 @@ import type { TeaserBlok } from '@/types/storyblok';
 import RichText from '@/components/rich-text/rich-text';
 import Card from '@/components/card/mfCard';
 import HTag from '@/components/hTag/mfHtag';
-import { Icon } from '@/components/icon/icon';
+
 type TeaserProps = {
 	blok: TeaserBlok;
 };
@@ -11,12 +11,23 @@ type TeaserProps = {
 const Teaser = ({ blok }: TeaserProps) => {
 	//console.log('Teaser blok:', blok);
 	return (
-		<Card variant={blok.variant || 'outlined'} {...storyblokEditable(blok)}>
-			<HTag size={blok.headlineSize} suffix={blok.headlineSuffix}>
-				<Icon iconName={blok.iconName} />
+		<Card
+			variant={blok.variant || 'outlined'}
+			{...storyblokEditable(blok)}
+			className="teaser-card"
+			variantExtras={blok.variantExtras}
+		>
+			<HTag
+				size={blok.headlineSize}
+				suffix={blok.headlineSuffix}
+				iconName={blok.iconName}
+				tag={blok.headingLevel || 'h2'}
+			>
 				{blok.headline}
 			</HTag>
-			<RichText content={blok.content?.content || []} />
+			{blok.content && Array.isArray(blok.content.content) && (
+				<RichText content={blok.content.content} />
+			)}
 		</Card>
 	);
 };

@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { IconNames, IconName } from '../../types/componentTypes';
+import './icon.modules.scss';
 import {
 	faShopLock,
 	faHeartPulse,
@@ -10,46 +12,37 @@ import {
 	faShieldHalved,
 	faArrowTrendUp,
 	faShield,
+	faClapperboard,
 } from '@fortawesome/free-solid-svg-icons';
-import './icon.modules.scss';
-const icons = [
-	'building-shield',
-	'shop-lock',
-	'heart-pulse',
-	'graduation-cap',
-	'magnifying-glass',
-	'shield-halved',
-	'handshake',
-	'arrow-trend-up',
-	'shield',
-] as const;
 
 export type IconProps = {
-	iconName: (typeof icons)[number];
+	iconName: IconNames;
 	className?: string;
 };
-export function Icon({ iconName }: IconProps) {
+export function Icon({ iconName, className }: IconProps) {
 	//TODO: Move icon selector to lib
 	const icon = () => {
 		switch (iconName) {
-			case 'building-shield':
+			case IconName.buildingShield:
 				return faBuildingShield;
-			case 'shop-lock':
+			case IconName.shopLock:
 				return faShopLock;
-			case 'heart-pulse':
+			case IconName.heartPulse:
 				return faHeartPulse;
-			case 'graduation-cap':
+			case IconName.graduationCap:
 				return faGraduationCap;
-			case 'magnifying-glass':
+			case IconName.magnifyingGlass:
 				return faMagnifyingGlass;
-			case 'handshake':
+			case IconName.handshake:
 				return faHandshake;
-			case 'shield-halved':
+			case IconName.shieldHalved:
 				return faShieldHalved;
-			case 'arrow-trend-up':
+			case IconName.arrowTrendUp:
 				return faArrowTrendUp;
-			case 'shield':
+			case IconName.shield:
 				return faShield;
+			case IconName.clapperboard:
+				return faClapperboard;
 			default:
 				return null;
 		}
@@ -58,7 +51,7 @@ export function Icon({ iconName }: IconProps) {
 	//console.log('Icon rendered with icon:', icon());
 	if (icon() === null) return null;
 	return (
-		<span className="mf-icon">
+		<span className={`mf-icon ${className}`}>
 			<FontAwesomeIcon
 				icon={icon() as IconDefinition}
 				style={{ maxHeight: '100%', maxWidth: '100%' }}

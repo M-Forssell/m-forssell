@@ -14,13 +14,15 @@ import {
 } from '@/types/componentTypes';
 import { RichTextNode, TextNode, ImageNode } from './rich-text-types';
 import classNames from 'classnames/bind';
+import H from '@/components/hTag/mfHtag';
 
 export type RichTextProps = {
 	content: RichTextNode[];
 	size?: PSizes;
+	className?: string;
 };
 
-function renderText(node: TextNode): ReactNode {
+function renderText(node: TextNode, index: number): ReactNode {
 	let text: ReactNode = node.text;
 
 	if (!node.marks || node.marks.length === 0) {
@@ -32,23 +34,24 @@ function renderText(node: TextNode): ReactNode {
 		const mark = node.marks[i];
 		switch (mark.type) {
 			case MarkType.bold:
-				text = <strong>{text}</strong>;
+				text = <strong key={index}>{text}</strong>;
 				break;
 			case MarkType.italic:
-				text = <em>{text}</em>;
+				text = <em key={index}>{text}</em>;
 				break;
 			case MarkType.underline:
-				text = <u>{text}</u>;
+				text = <u key={index}>{text}</u>;
 				break;
 			case MarkType.strike:
-				text = <s>{text}</s>;
+				text = <s key={index}>{text}</s>;
 				break;
 			case MarkType.code:
-				text = <code>{text}</code>;
+				text = <code key={index}>{text}</code>;
 				break;
 			case MarkType.link:
 				text = (
 					<a
+						key={index}
 						href={mark.attrs?.href}
 						target={mark.attrs?.target}
 						rel={
@@ -62,11 +65,20 @@ function renderText(node: TextNode): ReactNode {
 				);
 				break;
 			case MarkType.styled:
-				text = <span className={mark.attrs?.class}>{text}</span>;
+				text = (
+					<span key={index} className={mark.attrs?.class}>
+						{text}
+					</span>
+				);
 				break;
+			/*
 			case MarkType.textStyle:
-				text = <span style={{ color: mark.attrs?.color }}>{text}</span>;
-				break;
+				text = (
+					<span key={index} style={{ color: mark.attrs?.color }}>
+						{text}
+					</span>
+				);
+				break;*/
 		}
 	}
 
@@ -80,7 +92,7 @@ function renderNode(
 ): ReactNode {
 	// Text node
 	if ('text' in node) {
-		return <span key={index}>{renderText(node)}</span>;
+		return renderText(node, index);
 	}
 
 	// Image node
@@ -112,10 +124,12 @@ function renderNode(
 	}
 
 	// Block nodes
-	const content = node.content?.map(
-		(child: TextNode | ImageNode | RichTextNode, i: number) =>
-			renderNode(child, i),
-	);
+	const content = Array.isArray(node.content)
+		? node.content.map(
+				(child: TextNode | ImageNode | RichTextNode, i: number) =>
+					renderNode(child, i),
+			)
+		: null;
 
 	switch (node.type) {
 		case RichTextNodeType.paragraph:
@@ -123,7 +137,11 @@ function renderNode(
 		case RichTextNodeType.heading: {
 			const level = node.attrs?.level || 1;
 			const HeadingTag = `h${level}` as HeadingLevels;
-			return <HeadingTag key={index}>{content}</HeadingTag>;
+			return (
+				<H tag={HeadingTag} key={index}>
+					{content}
+				</H>
+			);
 		}
 		case RichTextNodeType.blockquote:
 			return <blockquote key={index}>{content}</blockquote>;
@@ -140,6 +158,8 @@ function renderNode(
 				</pre>
 			);
 		default:
+			// Return null for unknown node types to prevent rendering objects
+			console.warn('Unknown RichText node type:', (node as any).type);
 			return null;
 	}
 }
@@ -150,7 +170,8 @@ export default function RichText({ content, size = PSize.md }: RichTextProps) {
 		[`${styles.richText}`]: true,
 		[`${styles[`richText--${size}`]}`]: !!size,
 	});
-	if (!content || content.length === 0) {
+
+	if (!Array.isArray(content) || content.length === 0) {
 		return null;
 	}
 

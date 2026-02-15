@@ -10,7 +10,8 @@ type FeatureProps = {
 
 const Feature = ({ blok }: FeatureProps) => {
 	//console.log('Feature blok:', blok);
-	const HVariant = (blok.variant as string) === 'underlined' ? 'underlined' : undefined;
+	const HVariant =
+		(blok.variant as string) === 'underlined' ? 'underlined' : undefined;
 	const returnCardVariant = () => {
 		// return variant if it matches card variants
 		if (Object.values(CardVariant).includes(blok.variant as CardVariants)) {
@@ -24,7 +25,9 @@ const Feature = ({ blok }: FeatureProps) => {
 			<HTag tag="h2" variant={HVariant}>
 				{blok.name}
 			</HTag>
-			<RichText content={blok.content?.content || []} />
+			{blok.content && Array.isArray(blok.content.content) && (
+				<RichText content={blok.content.content} />
+			)}
 		</Card>
 	);
 };

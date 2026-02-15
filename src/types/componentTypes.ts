@@ -1,3 +1,5 @@
+import build from 'next/dist/build';
+
 export const CardVariant = {
 	filled: 'filled',
 	elevated: 'elevated',
@@ -64,3 +66,18 @@ export const MarkType = {
 } as const;
 
 export type MarkTypes = (typeof MarkType)[keyof typeof MarkType];
+
+export const IconName = {
+	buildingShield: 'building-shield',
+	shopLock: 'shop-lock',
+	heartPulse: 'heart-pulse',
+	graduationCap: 'graduation-cap',
+	magnifyingGlass: 'magnifying-glass',
+	shieldHalved: 'shield-halved',
+	handshake: 'handshake',
+	arrowTrendUp: 'arrow-trend-up',
+	shield: 'shield',
+	clapperboard: 'clapperboard',
+} as const;
+
+export type IconNames = (typeof IconName)[keyof typeof IconName];

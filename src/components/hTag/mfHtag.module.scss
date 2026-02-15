@@ -3,11 +3,20 @@
 .h-tag {
 	font-optical-sizing: auto;
 	font-weight: 400;
-	line-height: 1.5;
+	line-height: 1.1;
 	color: var(--color-heading);
+	margin-bottom: 0.2em;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&--xs {
+		@include typography.fluid-font(0.75rem, 1rem);
+	}
 
 	&--sm {
-		@include typography.fluid-font(1rem, 1.5rem);
+		@include typography.fluid-font(1rem, 1.25rem);
 	}
 
 	&--md {
@@ -15,7 +24,7 @@
 	}
 
 	&--lg {
-		@include typography.fluid-font(1.5rem, 2.25rem);
+		@include typography.fluid-font(1.5rem, 2.5rem);
 	}
 
 	&--xl {
@@ -27,7 +36,7 @@
 	}
 
 	&--underlined span {
-		border-bottom: 0.025rem solid var(--color-primary);
+		border-bottom: 0.063rem solid var(--color-primary-transparent);
 		display: inline-block;
 		margin-top: 0.25rem;
 		padding-bottom: 0.25rem;
@@ -35,7 +44,15 @@
 
 	&--suffix {
 		color: var(--color-orange);
-		text-shadow: 0 0 1.3rem var(--color-orange);
+		text-shadow: 0 0 1.3rem var(--color-primary-transparent);
 		display: block;
+		font-size: 0.8em;
+	}
+
+	&--has-icon {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
 	}
 }

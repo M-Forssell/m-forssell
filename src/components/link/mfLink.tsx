@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import styles from './mfLink.module.scss';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import styles from './mfLink.module.scss';
 
 type MfLinkProps = {
 	href: string;
@@ -24,10 +24,9 @@ const MfLink = ({
 	showValue = true,
 }: MfLinkProps) => {
 	const cx = classNames.bind(styles);
-	const linkClasses = cx(styles.mfLink, {
-		[styles.mfLink]: true,
-		[styles['mfLink--contact']]: variant === 'contact',
-		[styles['mfLink--has-icon']]: !!icon,
+	const linkClasses = cx('mfLink', {
+		'mfLink--contact': variant === 'contact',
+		'mfLink--has-icon': !!icon,
 	});
 
 	return (

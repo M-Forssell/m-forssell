@@ -1,13 +1,17 @@
+import { apiPlugin, storyblokInit } from '@storyblok/react';
 import Page from '@/bloks/page/Page';
 import Feature from '@/bloks/feature/Feature';
 import Grid from '@/bloks/grid/Grid';
 import Teaser from '@/bloks/teaser/Teaser';
 import Heading from '@/bloks/heading/Heading';
-import { apiPlugin, storyblokInit } from '@storyblok/react';
 
 const accessToken = process.env.STORYBLOK_DELIVERY_API_TOKEN;
 const region = process.env.STORYBLOK_REGION || 'eu';
 const apiBaseUrl = process.env.STORYBLOK_API_BASE_URL;
+
+export function getStoryblokVersion(): 'draft' | 'published' {
+	return process.env.STORYBLOK_VERSION === 'published' ? 'published' : 'draft';
+}
 
 export const getStoryblokApi = storyblokInit({
 	accessToken,

@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
+npx tsc --noEmit
 npm run lint -- --max-warnings=0
 npm run test
 npm run build

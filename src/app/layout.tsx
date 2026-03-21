@@ -1,7 +1,7 @@
 import './globals.scss';
-import StoryblokProvider from '../bloks/StoryblokProvider';
 import MfHeader from '@/components/header/mfHeader';
 import MfFooter from '@/components/footer/mfFooter';
+import StoryblokProvider from '../bloks/StoryblokProvider';
 import { inter } from './fonts';
 
 export const metadata = {
@@ -14,21 +14,6 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	// Get storyblok content global
-	/*
-	const global: StoryblokApiResponse<GlobalContent> | null = await storyblokApi
-		.get('cdn/stories/global/footer', {
-			version: 'draft',
-		})
-		.then((response) => {
-			return response.data;
-		})
-		.catch((error) => {
-			console.error('Error fetching global content:', error);
-			return null;
-		});*/
-
-	//console.log('Global content in layout:', global?.story?.content.headerTitle);
 	return (
 		<html lang="sv" className={inter.variable} suppressHydrationWarning>
 			<head>

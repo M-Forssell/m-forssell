@@ -54,7 +54,8 @@ export interface PageBlok extends BaseBlok {
 export interface FeatureBlok extends BaseBlok {
 	component: 'feature';
 	name: string;
-	variant?: CardVariants;
+	variant?: CardVariants | 'underlined';
+	headingLevel?: HeadingLevels;
 	content?: RichTextContent;
 }
 

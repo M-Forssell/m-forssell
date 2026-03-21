@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import RichText from './rich-text';
-import type { RichTextNode, TextNode } from './rich-text';
+import type { RichTextNode } from './rich-text-types';
 
 describe('RichText', () => {
 	it('renders paragraph with text', () => {

@@ -16,7 +16,7 @@ describe('MfCard', () => {
 	});
 
 	it('renders without children', () => {
-		const { container } = render(<MfCard />);
+		const { container } = render(<MfCard>{null}</MfCard>);
 		expect(container.firstChild).toBeInTheDocument();
 	});
 });

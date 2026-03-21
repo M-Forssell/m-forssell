@@ -1,6 +1,7 @@
 const config = {
-    '*.{ts,tsx,js,jsx}': () => 'npm run lint -- --max-warnings=0',
-    '*.{css,scss}': () => 'npm run lint:styles -- --max-warnings=0',
+    '*.{ts,tsx,js,jsx}': ['prettier --write', 'eslint --max-warnings=0'],
+    '*.{css,scss}': ['prettier --write', 'stylelint --max-warnings=0'],
+    '*.{json,md}': ['prettier --write'],
 };
 
 export default config;

@@ -1,3 +1,4 @@
+import type { RichTextNode } from '@/components/rich-text/rich-text-types';
 import type {
 	CardVariants,
 	HeadingLevels,
@@ -30,8 +31,6 @@ export interface StoryblokLink {
 }
 
 // Rich text content type (Storyblok document structure)
-import type { RichTextNode } from '@/components/rich-text/rich-text-types';
-
 export interface RichTextContent {
 	type: 'doc';
 	content: RichTextNode[];
@@ -54,7 +53,8 @@ export interface PageBlok extends BaseBlok {
 export interface FeatureBlok extends BaseBlok {
 	component: 'feature';
 	name: string;
-	variant?: CardVariants;
+	variant?: CardVariants | 'underlined';
+	headingLevel?: HeadingLevels;
 	content?: RichTextContent;
 }
 

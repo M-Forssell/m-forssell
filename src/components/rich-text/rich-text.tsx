@@ -1,20 +1,16 @@
 import type { ReactNode } from 'react';
 import Image from 'next/image';
-import styles from './rich-text.module.scss';
+import classNames from 'classnames/bind';
 import {
 	PSizes,
 	PSize,
-	HSizes,
-	HSize,
 	HeadingLevels,
-	MarkTypes,
 	MarkType,
-	RichTextNodeTypes,
 	RichTextNodeType,
 } from '@/types/componentTypes';
-import { RichTextNode, TextNode, ImageNode } from './rich-text-types';
-import classNames from 'classnames/bind';
 import H from '@/components/hTag/mfHtag';
+import styles from './rich-text.module.scss';
+import { RichTextNode, TextNode, ImageNode } from './rich-text-types';
 
 export type RichTextProps = {
 	content: RichTextNode[];
@@ -31,7 +27,7 @@ function renderText(node: TextNode, index: number): ReactNode {
 
 	// Apply marks in reverse order so they nest properly
 	for (let i = node.marks.length - 1; i >= 0; i--) {
-		const mark = node.marks[i];
+		const mark = node.marks[i]!;
 		switch (mark.type) {
 			case MarkType.bold:
 				text = <strong key={index}>{text}</strong>;
@@ -151,7 +147,7 @@ function renderNode(
 			);
 		default:
 			// Return null for unknown node types to prevent rendering objects
-			console.warn('Unknown RichText node type:', (node as any).type);
+			console.warn('Unknown RichText node type:', (node as RichTextNode).type);
 			return null;
 	}
 }

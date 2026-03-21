@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import Feature from './Feature';
 import type { FeatureBlok } from '@/types/storyblok';
 import { CardVariant, CardVariants } from '@/types/componentTypes';
-import Card from '@/components/card/mfCard';
+import Feature from './Feature';
 
 // Mock storyblokEditable
 vi.mock('@storyblok/react', () => ({

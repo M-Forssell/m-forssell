@@ -5,16 +5,10 @@
 	"ignoreFiles": ["dist/**", "public/**", "node_modules/**"],
 	"rules": {
 		"unit-allowed-list": [
-			"%",
-			"deg",
-			"rem",
-			"ms",
-			"em",
-			"s",
-			"vh",
-			"vw",
-			"fr",
-			"ch"
+			["%", "deg", "rem", "ms", "em", "s", "vh", "vw", "fr", "ch"],
+			{
+				"message": "Use rem instead of px for consistent, accessible sizing. See foundation/typography.scss for mixins."
+			}
 		],
 		"scss/at-rule-no-unknown": true,
 		"no-descending-specificity": null,

@@ -10,7 +10,7 @@ import {
 	IconNames,
 } from '@/types/componentTypes';
 
-export type HProps = {
+export type HTagProps = {
 	tag?: HeadingLevels;
 	size?: HSizes;
 	variant?: 'underlined';
@@ -28,7 +28,7 @@ export default function H({
 	variant,
 	suffix,
 	iconName,
-}: HProps) {
+}: HTagProps) {
 	const cx = classNames.bind(styles);
 	const hTagClass = cx({
 		[`${baseClass}`]: true,

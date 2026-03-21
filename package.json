@@ -24,9 +24,12 @@
 		"@fortawesome/react-fontawesome": "^3.1.1",
 		"@storyblok/react": "^5.4.20",
 		"classnames": "^2.5.1",
-		"next": "15.3.6",
+		"next": "^15.5.14",
 		"react": "^19.2.1",
 		"react-dom": "^19.2.1"
+	},
+	"overrides": {
+		"flatted": "3.4.2"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3",
@@ -43,8 +46,8 @@
 		"eslint": "^9",
 		"eslint-config-next": "15.3.6",
 		"happy-dom": "^20.1.0",
-		"jsdom": "^27.4.0",
 		"husky": "^9.1.6",
+		"jsdom": "^27.4.0",
 		"lint-staged": "^15.2.10",
 		"sass": "^1.97.2",
 		"stylelint": "^16.26.1",

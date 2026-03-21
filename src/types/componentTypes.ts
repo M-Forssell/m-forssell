@@ -1,5 +1,3 @@
-import build from 'next/dist/build';
-
 export const CardVariant = {
 	filled: 'filled',
 	elevated: 'elevated',

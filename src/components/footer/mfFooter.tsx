@@ -1,4 +1,4 @@
-import { getStoryblokApi } from '@/lib/storyblok';
+import { getStoryblokApi, getStoryblokVersion } from '@/lib/storyblok';
 import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
 import RichText from '../rich-text/rich-text';
 import MfLink from '../link/mfLink';
@@ -14,7 +14,7 @@ const storyblokApi = getStoryblokApi();
 const MfFooter = async () => {
 	const global: StoryblokApiResponse<GlobalContent> | null = await storyblokApi
 		.get('cdn/stories/global/footer', {
-			version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
+			version: getStoryblokVersion(),
 		})
 		.then((response) => {
 			return response.data;

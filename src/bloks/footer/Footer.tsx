@@ -1,8 +1,10 @@
-import { storyblokEditable } from '@storyblok/react/rsc';
-import { an } from 'node_modules/vitest/dist/chunks/reporters.d.Rsi0PyxX';
+import type { BaseBlok } from '@/types/storyblok';
 
-const Footer = ({ blok }: any) => {
-	//console.log('Footer blok:', blok);
+type FooterBlokProps = {
+	blok: BaseBlok;
+};
+
+const Footer = ({ blok }: FooterBlokProps) => {
 	return <footer>Footer Content</footer>;
 };
 

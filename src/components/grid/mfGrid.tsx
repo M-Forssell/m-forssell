@@ -1,4 +1,3 @@
-import { cx } from 'happy-dom/lib/PropertySymbol';
 import styles from './mfGrid.module.scss';
 import classNames from 'classnames/bind';
 type GridProps = {
@@ -12,10 +11,6 @@ export default function Grid({
 	numberOfColumns = 2,
 	nested = false,
 }: GridProps) {
-	if (numberOfColumns < 1 || undefined) {
-		numberOfColumns = 2;
-	}
-
 	const cx = classNames.bind(styles);
 
 	const gridClasses = cx({

@@ -9,6 +9,12 @@ const accessToken = process.env.STORYBLOK_DELIVERY_API_TOKEN;
 const region = process.env.STORYBLOK_REGION || 'eu';
 const apiBaseUrl = process.env.STORYBLOK_API_BASE_URL;
 
+export function getStoryblokVersion(): 'draft' | 'published' {
+	return process.env.STORYBLOK_VERSION === 'published'
+		? 'published'
+		: 'draft';
+}
+
 export const getStoryblokApi = storyblokInit({
 	accessToken,
 	use: [apiPlugin],

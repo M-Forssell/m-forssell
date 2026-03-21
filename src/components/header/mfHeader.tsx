@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { RichTextContent } from '@/types/storyblok';
 import type { RichTextNode } from '@/components/rich-text/rich-text-types';
 import styles from './mfHeader.module.scss';
-import { getStoryblokApi } from '@/lib/storyblok';
+import { getStoryblokApi, getStoryblokVersion } from '@/lib/storyblok';
 import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
 
 const storyblokApi = getStoryblokApi();
@@ -23,7 +23,7 @@ const MfHeader = async () => {
 
 	const global: StoryblokApiResponse<GlobalContent> | null = await storyblokApi
 		.get('cdn/stories/global/header', {
-			version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
+			version: getStoryblokVersion(),
 		})
 		.then((response) => {
 			return response.data;

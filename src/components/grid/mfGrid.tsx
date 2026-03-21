@@ -1,5 +1,5 @@
-import styles from './mfGrid.module.scss';
 import classNames from 'classnames/bind';
+import styles from './mfGrid.module.scss';
 type GridProps = {
 	numberOfColumns?: 1 | 2 | 3 | 4;
 	nested?: boolean;
@@ -21,9 +21,12 @@ export default function Grid({
 	});
 
 	if (nested) {
-		return <section className={styles.container}><div className={gridClasses}>{children}</div></section>;
+		return (
+			<section className={styles.container}>
+				<div className={gridClasses}>{children}</div>
+			</section>
+		);
 	} else {
 		return <section className={gridClasses}>{children}</section>;
 	}
-
 }

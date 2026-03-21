@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import MfFooter from './mfFooter';
 
 // Mock the Storyblok API
 const { mockGet } = vi.hoisted(() => ({ mockGet: vi.fn() }));
@@ -13,8 +14,6 @@ vi.mock('@/components/theme-toggle/theme-toggle', () => ({
 	default: () => <button>Toggle Theme</button>,
 }));
 
-import MfFooter from './mfFooter';
-
 const mockGlobalContent = {
 	data: {
 		story: {
@@ -25,7 +24,11 @@ const mockGlobalContent = {
 				titleSuffix: 'oss',
 				email: { url: 'mailto:info@test.se', title: 'E-post' },
 				phone: { url: 'tel:+46701234567', title: 'Telefon' },
-				social: { url: 'https://linkedin.com', title: 'LinkedIn', target: '_blank' },
+				social: {
+					url: 'https://linkedin.com',
+					title: 'LinkedIn',
+					target: '_blank',
+				},
 			},
 		},
 	},

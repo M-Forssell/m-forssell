@@ -1,7 +1,7 @@
 import './globals.scss';
-import StoryblokProvider from '../bloks/StoryblokProvider';
 import MfHeader from '@/components/header/mfHeader';
 import MfFooter from '@/components/footer/mfFooter';
+import StoryblokProvider from '../bloks/StoryblokProvider';
 import { inter } from './fonts';
 
 export const metadata = {

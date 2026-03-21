@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import Teaser from './Teaser';
 import type { TeaserBlok } from '@/types/storyblok';
+import Teaser from './Teaser';
 
 // Mock storyblokEditable
 vi.mock('@storyblok/react/rsc', () => ({

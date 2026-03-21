@@ -1,13 +1,17 @@
-import { getStoryblokApi, getStoryblokVersion } from '@/lib/storyblok';
-import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
-import RichText from '../rich-text/rich-text';
-import MfLink from '../link/mfLink';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import styles from './mfFooter.module.scss';
+import { getStoryblokApi, getStoryblokVersion } from '@/lib/storyblok';
+import type {
+	StoryblokApiResponse,
+	GlobalContent,
+	RichTextContent,
+} from '@/types/storyblok';
 import ThemeToggle from '@/components/theme-toggle/theme-toggle';
 import H from '@/components/hTag/mfHtag';
 import { HeadingLevels, HSizes } from '@/types/componentTypes';
+import RichText from '../rich-text/rich-text';
+import MfLink from '../link/mfLink';
+import styles from './mfFooter.module.scss';
 
 const storyblokApi = getStoryblokApi();
 
@@ -24,6 +28,10 @@ const MfFooter = async () => {
 			return null;
 		});
 
+	const footerContent = global?.story?.content as
+		| (GlobalContent & { content?: RichTextContent })
+		| undefined;
+
 	return (
 		<>
 			<footer className={styles.mfFooter}>
@@ -34,15 +42,11 @@ const MfFooter = async () => {
 							size={global?.story?.content.headingSize as HSizes}
 							suffix={global?.story?.content.titleSuffix as string}
 						>
-							{global?.story?.content.title || 'Footer'}
+							{(global?.story?.content.title as string) || 'Footer'}
 						</H>
-						{(global?.story?.content as any)?.content &&
-							Array.isArray(
-								(global?.story?.content as any).content.content,
-							) && (
-								<RichText
-									content={(global?.story?.content as any).content.content}
-								/>
+						{footerContent?.content &&
+							Array.isArray(footerContent.content.content) && (
+								<RichText content={footerContent.content.content} />
 							)}
 					</div>
 

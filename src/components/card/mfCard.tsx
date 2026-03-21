@@ -1,7 +1,7 @@
-import styles from './mfCard.module.scss';
 import classNames from 'classnames/bind';
 import { CardVariants, CardVariant } from '@/types/componentTypes';
 import { CardVariantsExtra } from '@/types/storyblok';
+import styles from './mfCard.module.scss';
 
 type CardProps = {
 	children: React.ReactNode;

@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import Grid from './Grid';
 import type { GridBlok, TeaserBlok } from '@/types/storyblok';
+import Grid from './Grid';
 
 // Mock storyblokEditable and StoryblokServerComponent
 vi.mock('@storyblok/react/rsc', () => ({
 	storyblokEditable: () => ({}),
-	StoryblokServerComponent: ({ blok }: { blok: any }) => (
+	StoryblokServerComponent: ({ blok }: { blok: Record<string, string> }) => (
 		<div data-testid={`component-${blok.component}`}>{blok.headline}</div>
 	),
 }));

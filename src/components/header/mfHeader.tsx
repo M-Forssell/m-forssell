@@ -1,19 +1,28 @@
-import SvgLogo from '@/components/logo/SvgLogo';
 import Link from 'next/link';
-import type { RichTextContent } from '@/types/storyblok';
-import type { RichTextNode } from '@/components/rich-text/rich-text-types';
-import styles from './mfHeader.module.scss';
+import SvgLogo from '@/components/logo/SvgLogo';
+import type {
+	StoryblokApiResponse,
+	GlobalContent,
+	RichTextContent,
+} from '@/types/storyblok';
+import type {
+	RichTextNode,
+	TextNode,
+	ImageNode,
+} from '@/components/rich-text/rich-text-types';
 import { getStoryblokApi, getStoryblokVersion } from '@/lib/storyblok';
-import type { StoryblokApiResponse, GlobalContent } from '@/types/storyblok';
+import styles from './mfHeader.module.scss';
 
 const storyblokApi = getStoryblokApi();
 
-const extractTextFromNode = (node: RichTextNode): string => {
-	if ((node as any).type === 'text') {
-		return (node as any).text || '';
+const extractTextFromNode = (
+	node: RichTextNode | TextNode | ImageNode,
+): string => {
+	if ('text' in node) {
+		return node.text || '';
 	}
-	if (node.type === 'paragraph' && (node as any).content) {
-		return (node as any).content.map(extractTextFromNode).join('');
+	if (node.type === 'paragraph' && node.content) {
+		return node.content.map(extractTextFromNode).join('');
 	}
 	return '';
 };

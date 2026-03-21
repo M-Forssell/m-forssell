@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import MfLink from './mfLink';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import MfLink from './mfLink';
 
 describe('MfLink', () => {
 	it('renders children as link text', () => {

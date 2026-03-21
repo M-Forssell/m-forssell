@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import MfHeader from './mfHeader';
 
 // Mock the Storyblok API
 const { mockGet } = vi.hoisted(() => ({ mockGet: vi.fn() }));
@@ -14,8 +15,6 @@ vi.mock('@/components/logo/SvgLogo', () => ({
 		<svg data-testid="logo" {...props} />
 	),
 }));
-
-import MfHeader from './mfHeader';
 
 describe('MfHeader', () => {
 	it('renders header with logo and fallback link', async () => {

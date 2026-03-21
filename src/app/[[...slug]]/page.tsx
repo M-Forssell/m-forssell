@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { StoryblokServerComponent } from '@storyblok/react/rsc';
-import { getStoryblokApi, getStoryblokVersion } from '../../lib/storyblok';
 import type { StoryblokStory as StoryblokStoryType } from '@/types/storyblok';
+import { getStoryblokApi, getStoryblokVersion } from '../../lib/storyblok';
 
 type PageParams = {
 	params: Promise<{

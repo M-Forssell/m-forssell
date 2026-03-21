@@ -1,6 +1,4 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import type { IconNames } from '@/types/componentTypes';
-import { IconName } from '@/types/componentTypes';
 import {
 	faShopLock,
 	faHeartPulse,
@@ -13,6 +11,8 @@ import {
 	faShield,
 	faClapperboard,
 } from '@fortawesome/free-solid-svg-icons';
+import type { IconNames } from '@/types/componentTypes';
+import { IconName } from '@/types/componentTypes';
 
 /**
  * Maps Storyblok icon names to FontAwesome icon definitions.

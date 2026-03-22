@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import RichText from './rich-text';
-import type { RichTextNode, TextNode } from './rich-text';
+import type { RichTextNode } from './rich-text-types';
 
 describe('RichText', () => {
 	it('renders paragraph with text', () => {
@@ -75,6 +75,31 @@ describe('RichText', () => {
 		const em = container.querySelector('em');
 		expect(em).toBeInTheDocument();
 		expect(em).toHaveTextContent('Italic text');
+	});
+
+	it('does not render color styled mark', () => {
+		const content: RichTextNode[] = [
+			{
+				type: 'paragraph',
+				content: [
+					{
+						type: 'text',
+						text: 'Colored text',
+						marks: [
+							{
+								type: 'textStyle',
+								attrs: { color: '#ff0000' },
+							},
+						],
+					},
+				],
+			},
+		];
+		const { container } = render(<RichText content={content} />);
+		const paragraph = container.querySelector('p');
+		expect(paragraph).toBeInTheDocument();
+		expect(paragraph).toHaveTextContent('Colored text');
+		expect(paragraph).not.toHaveStyle('color: #ff0000');
 	});
 
 	it('renders link with href', () => {
@@ -219,5 +244,44 @@ describe('RichText', () => {
 	it('renders empty content as null', () => {
 		const { container } = render(<RichText content={[]} />);
 		expect(container.firstChild).toBeNull();
+	});
+
+	describe('size variants', () => {
+		const paragraphContent: RichTextNode[] = [
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Test' }],
+			},
+		];
+
+		it('applies md size class by default', () => {
+			const { container } = render(<RichText content={paragraphContent} />);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--md');
+		});
+
+		it('applies xs size class', () => {
+			const { container } = render(
+				<RichText content={paragraphContent} size="xs" />,
+			);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--xs');
+		});
+
+		it('applies sm size class', () => {
+			const { container } = render(
+				<RichText content={paragraphContent} size="sm" />,
+			);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--sm');
+		});
+
+		it('applies lg size class', () => {
+			const { container } = render(
+				<RichText content={paragraphContent} size="lg" />,
+			);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--lg');
+		});
 	});
 });

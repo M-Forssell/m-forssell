@@ -34,6 +34,8 @@
 	--color-border: var(--color-gray-300);
 	--color-card-bg: var(--color-gray-175);
 	--color-muted: var(--color-gray-500);
+	--color-link: var(--color-orange);
+	--color-link-visited: hsl(16.71 70% 40%);
 }
 
 /* Dark theme */
@@ -64,6 +66,19 @@
 	}
 }
 
+a:not([class]) {
+	color: var(--color-link);
+	transition: opacity 0.2s ease;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	&:visited {
+		color: var(--color-link-visited);
+	}
+}
+
 /* Apply theme colors globally */
 body {
 	background: var(--color-background);
@@ -80,4 +95,5 @@ body {
 	transition:
 		background-color 0.3s ease,
 		color 0.3s ease;
+	container-type: inline-size;
 }

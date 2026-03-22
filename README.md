@@ -1,86 +1,119 @@
-# Storyblok Core Space Blueprint: Next.js
+# M Forssell
 
-Integrate [Next.js](https://nextjs.org/) with [Storyblok](http://www.storyblok.com) as a headless CMS.
+A [Next.js](https://nextjs.org/) website powered by [Storyblok](https://www.storyblok.com) as a headless CMS, deployed on [Netlify](https://www.netlify.com).
 
-This blueprint is ideal for kickstarting new Storyblok and Next.js projects. What's inside:
+## Tech Stack
 
-- Pre-configured default blocks: `page`, `teaser`, `grid`, and `feature`.
-- Support for the Visual Editor's live preview.
-- Dynamic routing to fetch and render new stories automatically.
-- Minimal styling.
-
-> [!TIP]
-> Follow our [Next.js guide](https://www.storyblok.com/docs/guides/nextjs/) for a step-by-step walkthrough and learn more about Storyblok's range of features, including rich text rendering, custom content modeling, and internationalization. See the [@storyblok/react package reference](https://storyblok.com/docs/packages/storyblok-react) for further information.
-
----
-
-[![Open in GitHub Codespaces](https://img.shields.io/badge/Open%20in%20GitHub%20Codespaces-dad4ff.svg?style=for-the-badge&logo=GitHub&logoColor=181717&labelColor=ffffff&color=dad4ff)](https://github.com/codespaces/new?skip_quickstart=true&machine=basicLinux32gb&repo=962644002&ref=main&geo=EuropeWest)
-[![Try Storyblok free](https://img.shields.io/badge/Try%20Storyblok-dad4ff.svg?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQuNzA3IDIuNTM4aDIyLjUyOXYyMy41ODdINC43MDd6IiBzdHlsZT0iZmlsbDojZmZmIi8+PHBhdGggZmlsbD0iIzFmMWYxZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMS43NDMgMi42MDFBMi41OTcgMi41OTcgMCAwIDEgNC4zMzUgMGgyMy4zM2EyLjU5NyAyLjU5NyAwIDAgMSAyLjU5MiAyLjYwMXYyMy40MTFhMi41OTcgMi41OTcgMCAwIDEtMi41OTIgMi42MDJIMTIuNTQ4bC0zLjg3MiAzLjIwOGEuNzcuNzcgMCAwIDEtMS4yNjEtLjU5N3YtMi42MTFoLTMuMDhhMi41OTcgMi41OTcgMCAwIDEtMi41OTItMi42MDJabTUuNjcgMi4xMjdoMTIuNDYyYzIuNjkxIDAgNC44NzMgMi4xOSA0Ljg3MyA0Ljg5IDAgMi4xNjQtMS40IDQtMy4zNDIgNC42NDRhNC44ODcgNC44ODcgMCAwIDEgMy45OSA0LjgxYzAgMi43MDEtMi4xODEgNC44OS00Ljg3MyA0Ljg5SDcuNDEzdi05LjQ1NFptMTAuMzY0IDQuNEgxMS45NXYyLjkzNGg1LjgyOGMuODA4IDAgMS40NjItLjY1NiAxLjQ2Mi0xLjQ2NyAwLS44MS0uNjU0LTEuNDY3LTEuNDYyLTEuNDY3em0tNS44MjggNi41Mmg2LjMxNGMuODk3IDAgMS42MjQuNzMgMS42MjQgMS42MyAwIC45MDEtLjcyNyAxLjYzLTEuNjI0IDEuNjNoLTYuMzE0eiIgY2xpcC1ydWxlPSJldmVub2RkIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOjEuNTE3NzUiLz48L3N2Zz4K&labelColor=ffffff)](https://app.storyblok.com/#/signup)
-[![Join the Storyblok Discord community](https://img.shields.io/discord/700316478792138842?style=for-the-badge&logo=discord&label=Join%20our%20community&labelColor=ffffff&color=dad4ff)](https://storyblok.com/join-discord)
+- **Framework:** Next.js 15 (App Router, React 19)
+- **CMS:** Storyblok
+- **Styling:** SCSS Modules with design tokens (fluid typography, CSS custom properties)
+- **Icons:** FontAwesome (tree-shakable individual imports)
+- **Testing:** Vitest + React Testing Library
+- **Linting:** ESLint, Stylelint, Prettier
+- **Deployment:** Netlify
 
 ## Get Started
 
-**No Storyblok account yet? [Sign up now](https://app.storyblok.com/#/signup?utm_source=docs) to experience a 14-day free trial of all features and enjoy our completely free Starter plan.**
+### Prerequisites
 
-1. Create an empty new Storyblok space
-2. Create a new repository based on this template
-3. Open the project on your device
-4. Install dependencies
+- Node.js 22+ (or Bun)
+- A Storyblok account and space
+
+### 1. Install dependencies
 
 ```sh
+npm install
+# or
 bun install
 ```
 
-### Git hooks
+### 2. Set up VS Code
 
-- On install, `husky` sets up hooks locally. If you use `bun` or `pnpm`, ensure `bun run prepare` ran at least once.
-- Pre-commit: runs `lint-staged` (Next.js lint for TS/JS, stylelint for CSS/SCSS). Fix issues before committing.
-- Pre-push: runs `bun run lint -- --max-warnings=0`, `bun run test`, then `bun run build`. Push is blocked on failure.
-- To bypass (not recommended), use `git commit --no-verify` or `git push --no-verify`.
-
-### Authentication
-
-In the root of the project, create a `.env` file to store the Storyblok access token:
+Copy the recommended workspace settings:
 
 ```sh
-STORYBLOK_DELIVERY_API_TOKEN=<REPLACE_WITH_YOUR_TOKEN>
+cp .vscode/settings.example.json .vscode/settings.json
 ```
 
+VS Code will also prompt you to install the recommended extensions (Prettier, ESLint, Stylelint, EditorConfig).
+
+### 3. Set up environment variables
+
+```sh
+cp .env.example .env.local
+```
+
+Add your Storyblok `preview` access token to `.env.local`. You can find it in **Settings > Access Tokens** in your Storyblok space.
+
 > [!IMPORTANT]
-> Copy your space's preview access token from **Settings** > **Access Tokens**.
 > Learn more about Storyblok [access tokens](https://www.storyblok.com/docs/concepts/access-tokens).
 
-### Connect the Visual Editor
+### 4. Run the development server
 
-To render a preview of the local project in the Visual Editor, follow these steps:
+```sh
+npm run dev
+```
 
-1. Navigate to **Settings > Visual Editor**.
-2. Set the default environment to `https://localhost:3000/`.
-3. Save.
-4. Open the `home` story.
-5. Click **Config**.
-6. Type `/` in the **Real path**.
-
-Run the development server with HTTPS enabled:
+For Visual Editor support, run with HTTPS:
 
 ```sh
 npx next dev --experimental-https
 ```
 
+## Project Structure
+
+```
+src/
+  app/            # Next.js App Router pages and layout
+  bloks/          # Storyblok blok components (CMS-mapped)
+  components/     # Reusable UI components (prefixed with mf)
+  foundation/     # Design tokens (colors, typography, breakpoints)
+  lib/            # Storyblok client setup and utilities
+  types/          # TypeScript types and enums
+```
+
+**Bloks** are 1:1 mapped to Storyblok content types and receive a `blok` prop. **Components** are CMS-agnostic and reusable.
+
+## Available Scripts
+
+| Command                 | Description                    |
+| ----------------------- | ------------------------------ |
+| `npm run dev`           | Start development server       |
+| `npm run build`         | Production build               |
+| `npm run lint`          | Run ESLint                     |
+| `npm run lint:styles`   | Run Stylelint on CSS/SCSS      |
+| `npm run test`          | Run tests                      |
+| `npm run test:watch`    | Run tests in watch mode        |
+| `npm run test:coverage` | Run tests with coverage report |
+
+## Git Hooks
+
+[Husky](https://typicode.github.io/husky/) runs automated checks:
+
+- **Pre-commit:** Prettier auto-formats staged files, then runs ESLint and Stylelint via lint-staged.
+- **Pre-push:** Runs type checking (`tsc`), linting, tests, and build. Push is blocked on failure.
+
+## Visual Editor
+
+To connect the Storyblok Visual Editor for live preview:
+
+1. In Storyblok, go to **Settings > Visual Editor**
+2. Set the default environment to `https://localhost:3000/`
+3. Open a story and click **Config**
+4. Set the **Real path** to `/`
+
 > [!IMPORTANT]
-> To connect the Storyblok Visual Editor, the local project must run over HTTPS. Learn more in the [Visual Editor concept](https://www.storyblok.com/docs/concepts/visual-editor#local-development-via-https).
+> The Visual Editor requires HTTPS. Run `npx next dev --experimental-https` locally.
 
-Back in Storyblok, open the **Home** story to start editing.
+## Styling Guidelines
 
-Happy building!
+- Use relative values like `rem` or `%` instead of `px` for sizing (enforced by Stylelint)
+- Use the design tokens in `src/foundation/` for colors, typography, and breakpoints
+- Component styles use SCSS Modules (co-located `.module.scss` files)
 
 ## Resources
 
-- To learn more about what you can do with Storyblok, visit [our documentation and learning hub](https://www.storyblok.com/docs).
-- To learn more about the integration between Storyblok and Next.js, check our [dedicated developer tutorials](https://www.storyblok.com/tutorials?technologies=next).
-- To learn more about Next.js, check the [official documentation](https://nextjs.org/docs).
-
-### Support
-
-- Have questions, need help, want to chat with other users? [Join our Discord community](https://storyblok.com/join-discord).
-- Visit the Storyblok [Help Center](https://support.storyblok.com/hc/en-us).
+- [Storyblok documentation](https://www.storyblok.com/docs)
+- [Next.js + Storyblok tutorials](https://www.storyblok.com/tutorials?technologies=next)
+- [Next.js documentation](https://nextjs.org/docs)
+- [@storyblok/react package reference](https://storyblok.com/docs/packages/storyblok-react)

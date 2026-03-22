@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation';
 import { StoryblokServerComponent } from '@storyblok/react/rsc';
-import { getStoryblokApi } from '../../lib/storyblok';
 import type { StoryblokStory as StoryblokStoryType } from '@/types/storyblok';
+import { getStoryblokApi, getStoryblokVersion } from '../../lib/storyblok';
+
+// Ensure Storyblok components are registered before any rendering
+getStoryblokApi();
 
 type PageParams = {
 	params: Promise<{
@@ -14,7 +17,7 @@ export const revalidate = 60;
 
 // Generate static params for common routes
 export async function generateStaticParams() {
-	if (process.env.STORYBLOK_VERSION !== 'published') {
+	if (getStoryblokVersion() !== 'published') {
 		return [];
 	}
 
@@ -36,12 +39,17 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: PageParams) {
 	const { slug } = await params;
+
+	// Reject paths that aren't valid Storyblok slugs (e.g. .well-known)
+	if (slug?.some((segment) => segment.startsWith('.'))) {
+		return notFound();
+	}
+
 	const fullSlug = slug ? slug.join('/') : 'home';
+	const version = getStoryblokVersion();
 	const sbParams = {
-		version: (process.env.STORYBLOK_VERSION || 'draft') as
-			| 'draft'
-			| 'published',
-		cv: process.env.STORYBLOK_VERSION === 'published' ? Date.now() : undefined,
+		version,
+		cv: Date.now(),
 	};
 
 	const storyblokApi = getStoryblokApi();

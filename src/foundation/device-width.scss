@@ -1,11 +1,12 @@
-$screen-xs: 20em; /* 320px */
-$screen-sm: 30em; // 480px
+$screen-xs: 20em; // 320px
+$screen-sm: 32em; // 512px
 $screen-md: 48em; // 768px
 $screen-lg: 64em; // 1024px
 $screen-xl: 75em; // 1200px
+$screen-xxl: 120em; // 1920px
 
 $content-width-sm: 25.3rem; // 1024px
-$content-width-max: 64rem; // 1024px
+$content-width-max: 95rem; // 1520px
 
 $fluid-font-screen-min: $content-width-sm; // $screen-sm
 $fluid-font-screen-max: $content-width-max; // $screen-lg

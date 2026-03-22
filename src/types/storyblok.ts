@@ -1,8 +1,10 @@
+import type { RichTextNode } from '@/components/rich-text/rich-text-types';
 import type {
 	CardVariants,
 	HeadingLevels,
 	HSizes,
 	IconNames,
+	PSizes,
 } from './componentTypes';
 // Storyblok asset type
 export interface StoryblokAsset {
@@ -30,8 +32,6 @@ export interface StoryblokLink {
 }
 
 // Rich text content type (Storyblok document structure)
-import type { RichTextNode } from '@/components/rich-text/rich-text-types';
-
 export interface RichTextContent {
 	type: 'doc';
 	content: RichTextNode[];
@@ -47,21 +47,22 @@ export interface BaseBlok {
 // Page blok - root component with body array
 export interface PageBlok extends BaseBlok {
 	component: 'page';
-	body?: Array<FeatureBlok | GridBlok | TeaserBlok>;
+	body?: Array<FeatureBlok | GridBlok | TeaserBlok | TitleBlok | TextBlok>;
 }
 
 // Feature blok
 export interface FeatureBlok extends BaseBlok {
 	component: 'feature';
 	name: string;
-	variant?: CardVariants;
+	variant?: CardVariants | 'underlined';
+	headingLevel?: HeadingLevels;
 	content?: RichTextContent;
 }
 
 // Grid blok
 export interface GridBlok extends BaseBlok {
 	component: 'grid';
-	columns: Array<FeatureBlok | TeaserBlok>;
+	columns: Array<FeatureBlok | TeaserBlok | GridBlok>;
 	numberOfCols?: 1 | 2 | 3 | 4;
 }
 
@@ -80,11 +81,113 @@ export interface TeaserBlok extends BaseBlok {
 	media?: StoryblokAsset;
 	assets?: StoryblokAsset;
 	link?: StoryblokLink;
+	links?: Array<LinkBlok>;
 	variantExtras?: Array<CardVariantsExtra>;
 }
 
+// TextInput blok
+export interface TextInputBlok extends BaseBlok {
+	component: 'textInput';
+	label: string;
+	name: string;
+	type?: 'text' | 'email' | 'tel' | 'url';
+	placeholder?: string;
+	required?: boolean;
+}
+
+// Dropdown blok
+export interface DropdownBlok extends BaseBlok {
+	component: 'dropdown';
+	label: string;
+	name: string;
+	options: string;
+	placeholder?: string;
+	required?: boolean;
+}
+
+// Textarea blok
+export interface TextareaBlok extends BaseBlok {
+	component: 'textarea';
+	label: string;
+	name: string;
+	placeholder?: string;
+	required?: boolean;
+	rows?: number;
+}
+
+// Checkbox blok
+export interface CheckboxBlok extends BaseBlok {
+	component: 'checkbox';
+	label: string;
+	name: string;
+	required?: boolean;
+	linkText?: string;
+	linkUrl?: StoryblokLink;
+}
+
+// Form blok
+export interface FormBlok extends BaseBlok {
+	component: 'form';
+	formName?: string;
+	action?: string;
+	submitLabel?: string;
+	successMessage?: string;
+	errorMessage?: string;
+	fields?: Array<TextInputBlok | DropdownBlok | TextareaBlok | CheckboxBlok>;
+}
+
+// Title blok
+export interface TitleBlok extends BaseBlok {
+	component: 'Title';
+	Title: string;
+	level?: HeadingLevels;
+	size?: HSizes;
+	icon?: string;
+	Suffix?: string;
+	hidden?: boolean;
+}
+
+// Text blok
+export interface TextBlok extends BaseBlok {
+	component: 'text';
+	content?: RichTextContent;
+	size?: PSizes;
+}
+
+// Success blok
+export interface SuccessBlok extends BaseBlok {
+	component: 'success';
+	title: string;
+	headingLevel?: HeadingLevels;
+	content?: RichTextContent;
+	image?: StoryblokAsset;
+}
+
+// Link blok
+export interface LinkBlok extends BaseBlok {
+	component: 'link';
+	label: string;
+	link: StoryblokLink;
+	variant?: 'outline' | 'cta';
+	icon?: IconNames;
+	iconPosition?: 'left' | 'right';
+}
+
 // Union type of all bloks
-export type AnyBlok = PageBlok | FeatureBlok | GridBlok | TeaserBlok;
+export type AnyBlok =
+	| PageBlok
+	| FeatureBlok
+	| GridBlok
+	| TeaserBlok
+	| TitleBlok
+	| TextBlok
+	| TextInputBlok
+	| DropdownBlok
+	| TextareaBlok
+	| CheckboxBlok
+	| FormBlok
+	| SuccessBlok
+	| LinkBlok;
 
 // Global/Footer content type
 export interface GlobalContent {

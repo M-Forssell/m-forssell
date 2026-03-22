@@ -1,5 +1,4 @@
 import { JSX } from 'react';
-import styles from './mfHtag.module.scss';
 import classNames from 'classnames/bind';
 import { Icon } from '@/components/icon/icon';
 import {
@@ -9,12 +8,13 @@ import {
 	HSize,
 	IconNames,
 } from '@/types/componentTypes';
+import styles from './mfHtag.module.scss';
 
-export type HProps = {
+export type HTagProps = {
 	tag?: HeadingLevels;
 	size?: HSizes;
 	variant?: 'underlined';
-	children: any;
+	children: React.ReactNode;
 	suffix?: string;
 	iconName?: IconNames;
 };
@@ -28,7 +28,7 @@ export default function H({
 	variant,
 	suffix,
 	iconName,
-}: HProps) {
+}: HTagProps) {
 	const cx = classNames.bind(styles);
 	const hTagClass = cx({
 		[`${baseClass}`]: true,

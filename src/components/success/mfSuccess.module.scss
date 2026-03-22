@@ -1,0 +1,25 @@
+@use '@/foundation/color.scss' as color;
+
+.mf-success {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.25rem;
+	text-align: center;
+	padding: 2rem;
+
+	&__image {
+		border-radius: 0.5rem;
+		max-width: 100%;
+		height: auto;
+	}
+
+	&__title {
+		color: color.$foreground;
+	}
+
+	&__text {
+		color: color.$muted;
+		max-width: 40rem;
+	}
+}

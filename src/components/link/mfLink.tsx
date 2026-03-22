@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import styles from './mfLink.module.scss';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import styles from './mfLink.module.scss';
 
 type MfLinkProps = {
 	href: string;
@@ -10,7 +10,8 @@ type MfLinkProps = {
 	rel?: string;
 	target?: string;
 	icon?: IconDefinition;
-	variant?: 'contact';
+	iconPosition?: 'left' | 'right';
+	variant?: 'contact' | 'outline' | 'cta';
 	showValue?: boolean;
 };
 
@@ -20,23 +21,27 @@ const MfLink = ({
 	rel,
 	target,
 	icon,
+	iconPosition = 'left',
 	variant,
 	showValue = true,
 }: MfLinkProps) => {
 	const cx = classNames.bind(styles);
-	const linkClasses = cx(styles.mfLink, {
-		[styles.mfLink]: true,
-		[styles['mfLink--contact']]: variant === 'contact',
-		[styles['mfLink--has-icon']]: !!icon,
+	const linkClasses = cx('mfLink', {
+		'mfLink--contact': variant === 'contact',
+		'mfLink--outline': variant === 'outline',
+		'mfLink--cta': variant === 'cta',
+		'mfLink--has-icon': !!icon,
 	});
+
+	const iconElement = icon && (
+		<span className={styles['mfLink__icon']}>
+			<FontAwesomeIcon icon={icon} />
+		</span>
+	);
 
 	return (
 		<Link href={href} rel={rel} target={target} className={linkClasses}>
-			{icon && (
-				<span className={styles['mfLink__icon']}>
-					<FontAwesomeIcon icon={icon} />
-				</span>
-			)}
+			{iconPosition === 'left' && iconElement}
 			<span className={styles.mfLink__content}>
 				{variant === 'contact' ? (
 					<>
@@ -51,6 +56,7 @@ const MfLink = ({
 					children
 				)}
 			</span>
+			{iconPosition === 'right' && iconElement}
 		</Link>
 	);
 };

@@ -1,5 +1,3 @@
-import build from 'next/dist/build';
-
 export const CardVariant = {
 	filled: 'filled',
 	elevated: 'elevated',
@@ -32,6 +30,7 @@ export const HSize = {
 export type HSizes = (typeof HSize)[keyof typeof HSize];
 
 export const PSize = {
+	xs: 'xs',
 	sm: 'sm',
 	md: 'md',
 	lg: 'lg',
@@ -78,6 +77,7 @@ export const IconName = {
 	arrowTrendUp: 'arrow-trend-up',
 	shield: 'shield',
 	clapperboard: 'clapperboard',
+	arrowRight: 'arrow-right',
 } as const;
 
 export type IconNames = (typeof IconName)[keyof typeof IconName];

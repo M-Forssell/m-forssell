@@ -4,33 +4,82 @@
 .mfGrid {
 	display: grid;
 	gap: 1rem;
+	grid-template-columns: 1fr;
 
-	@include breakpoints.breakpoint(deviceWidth.$screen-md) {
-		grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+	section {
+		container-type: inline-size;
 	}
 
 	&--cols-1 {
-		display: flex;
-		flex-direction: column;
+		@include breakpoints.breakpoint(deviceWidth.$screen-xxl) {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 
 	&--cols-2 {
-		@include breakpoints.breakpoint(deviceWidth.$screen-md) {
-			grid-template-columns: repeat(2, minmax(15rem, 1fr));
+		@include breakpoints.breakpoint(deviceWidth.$screen-lg) {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
 	&--cols-3 {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	&--cols-4 {
-		@include breakpoints.breakpoint(deviceWidth.$screen-sm) {
+		@include breakpoints.breakpoint(deviceWidth.$screen-md) {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
+		@include breakpoints.breakpoint(deviceWidth.$screen-lg) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	&--cols-4 {
 		@include breakpoints.breakpoint(deviceWidth.$screen-md) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include breakpoints.breakpoint(deviceWidth.$screen-lg) {
 			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	// Only apply container queries when nested inside another .mfGrid
+	&--nested {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 1fr;
+
+		&--cols-1 {
+			grid-template-columns: repeat(1, 1fr);
+
+			@container (width > 32em) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		&--cols-2 {
+			@container (width > 32em) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		&--cols-3 {
+			@container (width > 32em) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			@container (width > 48em) {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+
+		&--cols-4 {
+			@container (width > 32em) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			@container (width > 48em) {
+				grid-template-columns: repeat(4, 1fr);
+			}
 		}
 	}
 }

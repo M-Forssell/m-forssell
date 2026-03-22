@@ -1,15 +1,24 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
+import Image from 'next/image';
 import type { TeaserBlok } from '@/types/storyblok';
 import RichText from '@/components/rich-text/rich-text';
 import Card from '@/components/card/mfCard';
 import HTag from '@/components/hTag/mfHtag';
+import MfLink from '@/components/link/mfLink';
+import { iconMap } from '@/lib/iconMap';
 
 type TeaserProps = {
 	blok: TeaserBlok;
 };
 
 const Teaser = ({ blok }: TeaserProps) => {
-	//console.log('Teaser blok:', blok);
+	console.warn('teaser blok links:', JSON.stringify(blok.links));
+	const media = blok.media?.filename
+		? blok.media
+		: blok.assets?.filename
+			? blok.assets
+			: null;
+
 	return (
 		<Card
 			variant={blok.variant || 'outlined'}
@@ -17,6 +26,14 @@ const Teaser = ({ blok }: TeaserProps) => {
 			className="teaser-card"
 			variantExtras={blok.variantExtras}
 		>
+			{media && (
+				<Image
+					src={media.filename}
+					alt={media.alt || ''}
+					width={640}
+					height={360}
+				/>
+			)}
 			<HTag
 				size={blok.headlineSize}
 				suffix={blok.headlineSuffix}
@@ -28,6 +45,33 @@ const Teaser = ({ blok }: TeaserProps) => {
 			{blok.content && Array.isArray(blok.content.content) && (
 				<RichText content={blok.content.content} />
 			)}
+			{blok.link?.url && (
+				<MfLink
+					href={blok.link.cached_url || blok.link.url}
+					target={blok.link.target}
+				>
+					{blok.link.title || 'Read more'}
+				</MfLink>
+			)}
+			{blok.links?.map((linkBlok) => {
+				const href =
+					linkBlok.link?.linktype === 'story'
+						? `/${linkBlok.link.cached_url}`
+						: linkBlok.link?.url || '/';
+				const icon = linkBlok.icon ? iconMap[linkBlok.icon] : undefined;
+				return (
+					<MfLink
+						key={linkBlok._uid}
+						href={href}
+						target={linkBlok.link?.target}
+						variant={linkBlok.variant}
+						icon={icon}
+						iconPosition={linkBlok.iconPosition}
+					>
+						{linkBlok.label}
+					</MfLink>
+				);
+			})}
 		</Card>
 	);
 };

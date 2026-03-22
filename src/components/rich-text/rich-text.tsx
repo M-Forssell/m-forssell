@@ -1,20 +1,25 @@
 import type { ReactNode } from 'react';
 import Image from 'next/image';
-import styles from './rich-text.module.scss';
+import classNames from 'classnames/bind';
 import {
 	PSizes,
 	PSize,
 	HSizes,
 	HSize,
 	HeadingLevels,
-	MarkTypes,
 	MarkType,
-	RichTextNodeTypes,
 	RichTextNodeType,
 } from '@/types/componentTypes';
-import { RichTextNode, TextNode, ImageNode } from './rich-text-types';
-import classNames from 'classnames/bind';
 import H from '@/components/hTag/mfHtag';
+import styles from './rich-text.module.scss';
+import { RichTextNode, TextNode, ImageNode } from './rich-text-types';
+
+const pSizeToHSize: Record<PSizes, HSizes> = {
+	xs: HSize.sm,
+	sm: HSize.sm,
+	md: HSize.md,
+	lg: HSize.lg,
+};
 
 export type RichTextProps = {
 	content: RichTextNode[];
@@ -31,7 +36,7 @@ function renderText(node: TextNode, index: number): ReactNode {
 
 	// Apply marks in reverse order so they nest properly
 	for (let i = node.marks.length - 1; i >= 0; i--) {
-		const mark = node.marks[i];
+		const mark = node.marks[i]!;
 		switch (mark.type) {
 			case MarkType.bold:
 				text = <strong key={index}>{text}</strong>;
@@ -71,13 +76,6 @@ function renderText(node: TextNode, index: number): ReactNode {
 					</span>
 				);
 				break;
-			case MarkType.textStyle:
-				text = (
-					<span key={index} style={{ color: mark.attrs?.color }}>
-						{text}
-					</span>
-				);
-				break;
 		}
 	}
 
@@ -88,6 +86,7 @@ function renderText(node: TextNode, index: number): ReactNode {
 function renderNode(
 	node: RichTextNode | TextNode | ImageNode,
 	index: number,
+	size?: PSizes,
 ): ReactNode {
 	// Text node
 	if ('text' in node) {
@@ -126,7 +125,7 @@ function renderNode(
 	const content = Array.isArray(node.content)
 		? node.content.map(
 				(child: TextNode | ImageNode | RichTextNode, i: number) =>
-					renderNode(child, i),
+					renderNode(child, i, size),
 			)
 		: null;
 
@@ -136,8 +135,9 @@ function renderNode(
 		case RichTextNodeType.heading: {
 			const level = node.attrs?.level || 1;
 			const HeadingTag = `h${level}` as HeadingLevels;
+			const hSize = size ? pSizeToHSize[size] : undefined;
 			return (
-				<H tag={HeadingTag} key={index}>
+				<H tag={HeadingTag} size={hSize} key={index}>
 					{content}
 				</H>
 			);
@@ -158,7 +158,7 @@ function renderNode(
 			);
 		default:
 			// Return null for unknown node types to prevent rendering objects
-			console.warn('Unknown RichText node type:', (node as any).type);
+			console.warn('Unknown RichText node type:', (node as RichTextNode).type);
 			return null;
 	}
 }
@@ -166,8 +166,8 @@ function renderNode(
 export default function RichText({ content, size = PSize.md }: RichTextProps) {
 	const cx = classNames.bind(styles);
 	const richTextClass = cx({
-		[`${styles.richText}`]: true,
-		[`${styles[`richText--${size}`]}`]: !!size,
+		richText: true,
+		[`richText--${size}`]: !!size,
 	});
 
 	if (!Array.isArray(content) || content.length === 0) {
@@ -176,7 +176,7 @@ export default function RichText({ content, size = PSize.md }: RichTextProps) {
 
 	return (
 		<div className={richTextClass}>
-			{content.map((node, index) => renderNode(node, index))}
+			{content.map((node, index) => renderNode(node, index, size))}
 		</div>
 	);
 }

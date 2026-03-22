@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+.idea
 # dependencies
 /node_modules
 /.pnp
@@ -42,3 +42,10 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+deno.lock
+.vscode/settings.json
+.claude/
+
+# storyblok
+.storyblok/
+storyblok-components-*

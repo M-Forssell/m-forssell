@@ -12,10 +12,13 @@ function parseOptions(options: string) {
 		.map((line) => line.trim())
 		.filter(Boolean)
 		.map((line) => {
-			const [value, label] = line.includes(':')
-				? line.split(':').map((s) => s.trim())
-				: [line, line];
-			return { value, label };
+			if (line.includes(':')) {
+				const colonIndex = line.indexOf(':');
+				const value = line.slice(0, colonIndex).trim();
+				const label = line.slice(colonIndex + 1).trim();
+				return { value, label };
+			}
+			return { value: line, label: line };
 		});
 }
 

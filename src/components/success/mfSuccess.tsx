@@ -44,9 +44,7 @@ export default function MfSuccess({
 					className={cx(`${baseClass}__image`)}
 				/>
 			)}
-			<HTag tag={headingLevel} className={cx(`${baseClass}__title`)}>
-				{title}
-			</HTag>
+			<HTag tag={headingLevel}>{title}</HTag>
 			{content && content.length > 0 && (
 				<div className={cx(`${baseClass}__text`)}>
 					<RichText content={content} />

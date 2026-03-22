@@ -46,7 +46,7 @@ export interface BaseBlok {
 // Page blok - root component with body array
 export interface PageBlok extends BaseBlok {
 	component: 'page';
-	body?: Array<FeatureBlok | GridBlok | TeaserBlok>;
+	body?: Array<FeatureBlok | GridBlok | TeaserBlok | TitleBlok | TextBlok>;
 }
 
 // Feature blok
@@ -132,6 +132,24 @@ export interface FormBlok extends BaseBlok {
 	fields?: Array<TextInputBlok | DropdownBlok | TextareaBlok | CheckboxBlok>;
 }
 
+// Title blok
+export interface TitleBlok extends BaseBlok {
+	component: 'Title';
+	Title: string;
+	level?: HeadingLevels;
+	size?: HSizes;
+	icon?: string;
+	Suffix?: string;
+	hidden?: boolean;
+}
+
+// Text blok
+export interface TextBlok extends BaseBlok {
+	component: 'text';
+	content?: RichTextContent;
+	variant?: string;
+}
+
 // Success blok
 export interface SuccessBlok extends BaseBlok {
 	component: 'success';
@@ -147,6 +165,8 @@ export type AnyBlok =
 	| FeatureBlok
 	| GridBlok
 	| TeaserBlok
+	| TitleBlok
+	| TextBlok
 	| TextInputBlok
 	| DropdownBlok
 	| TextareaBlok

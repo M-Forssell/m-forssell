@@ -12,6 +12,7 @@ import Form from '@/bloks/form/Form';
 import Success from '@/bloks/success/Success';
 import Title from '@/bloks/title/Title';
 import Text from '@/bloks/text/Text';
+import Link from '@/bloks/link/Link';
 
 const accessToken = process.env.STORYBLOK_DELIVERY_API_TOKEN;
 const region = process.env.STORYBLOK_REGION || 'eu';
@@ -38,6 +39,7 @@ export const getStoryblokApi = storyblokInit({
 		success: Success,
 		Title: Title,
 		text: Text,
+		link: Link,
 	},
 	apiOptions: {
 		/** Set the correct region for your space. Learn more: https://www.storyblok.com/docs/packages/storyblok-js#example-region-parameter */

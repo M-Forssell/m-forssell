@@ -10,7 +10,7 @@ type MfLinkProps = {
 	rel?: string;
 	target?: string;
 	icon?: IconDefinition;
-	variant?: 'contact';
+	variant?: 'contact' | 'outline' | 'cta';
 	showValue?: boolean;
 };
 
@@ -26,6 +26,8 @@ const MfLink = ({
 	const cx = classNames.bind(styles);
 	const linkClasses = cx('mfLink', {
 		'mfLink--contact': variant === 'contact',
+		'mfLink--outline': variant === 'outline',
+		'mfLink--cta': variant === 'cta',
 		'mfLink--has-icon': !!icon,
 	});
 

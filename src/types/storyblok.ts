@@ -160,6 +160,15 @@ export interface SuccessBlok extends BaseBlok {
 	image?: StoryblokAsset;
 }
 
+// Link blok
+export interface LinkBlok extends BaseBlok {
+	component: 'link';
+	label: string;
+	link: StoryblokLink;
+	variant?: 'outline' | 'cta';
+	icon?: IconNames;
+}
+
 // Union type of all bloks
 export type AnyBlok =
 	| PageBlok
@@ -173,7 +182,8 @@ export type AnyBlok =
 	| TextareaBlok
 	| CheckboxBlok
 	| FormBlok
-	| SuccessBlok;
+	| SuccessBlok
+	| LinkBlok;
 
 // Global/Footer content type
 export interface GlobalContent {

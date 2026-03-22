@@ -12,8 +12,8 @@ type PageParams = {
 	}>;
 };
 
-// In draft mode, always fetch fresh data; in production, revalidate every 60s
-export const revalidate = getStoryblokVersion() === 'draft' ? 0 : 60;
+// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
+export const revalidate = 60;
 
 // Generate static params for common routes
 export async function generateStaticParams() {

@@ -5,12 +5,17 @@ import MfTextInput from './mfTextInput';
 describe('MfTextInput', () => {
 	it('renders with label and input', () => {
 		render(<MfTextInput label="Name" name="name" />);
-		expect(screen.getByLabelText('Name')).toBeInTheDocument();
+		expect(screen.getByLabelText(/Name/)).toBeInTheDocument();
 	});
 
-	it('shows required indicator when required', () => {
+	it('shows optional indicator when not required', () => {
+		render(<MfTextInput label="Name" name="name" />);
+		expect(screen.getByText('(valfritt)')).toBeInTheDocument();
+	});
+
+	it('does not show optional indicator when required', () => {
 		render(<MfTextInput label="Email" name="email" required />);
-		expect(screen.getByText('*')).toBeInTheDocument();
+		expect(screen.queryByText('(valfritt)')).not.toBeInTheDocument();
 	});
 
 	it('renders error message', () => {
@@ -20,7 +25,7 @@ describe('MfTextInput', () => {
 
 	it('sets aria-invalid when error is present', () => {
 		render(<MfTextInput label="Email" name="email" error="Required" />);
-		expect(screen.getByLabelText('Email')).toHaveAttribute(
+		expect(screen.getByLabelText(/Email/)).toHaveAttribute(
 			'aria-invalid',
 			'true',
 		);
@@ -28,11 +33,11 @@ describe('MfTextInput', () => {
 
 	it('disables input when disabled prop is set', () => {
 		render(<MfTextInput label="Name" name="name" disabled />);
-		expect(screen.getByLabelText('Name')).toBeDisabled();
+		expect(screen.getByLabelText(/Name/)).toBeDisabled();
 	});
 
 	it('renders with correct input type', () => {
 		render(<MfTextInput label="Email" name="email" type="email" />);
-		expect(screen.getByLabelText('Email')).toHaveAttribute('type', 'email');
+		expect(screen.getByLabelText(/Email/)).toHaveAttribute('type', 'email');
 	});
 });

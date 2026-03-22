@@ -4,6 +4,14 @@
 	display: flex;
 	align-items: flex-start;
 	gap: 0.5rem;
+	position: relative;
+
+	&__error-icon {
+		color: color.$orange;
+		font-size: 0.875rem;
+		flex-shrink: 0;
+		margin-top: 0.125rem;
+	}
 
 	&__input {
 		width: 1.125rem;
@@ -32,6 +40,11 @@
 		cursor: pointer;
 	}
 
+	&__optional {
+		font-weight: 400;
+		color: color.$muted;
+	}
+
 	&--error &__input {
 		accent-color: color.$orange;
 	}
@@ -39,7 +52,7 @@
 	&__error {
 		font-size: 0.75rem;
 		color: color.$orange;
-		margin: 0;
+		margin: 0.25rem 0 0;
 	}
 
 	&--disabled {

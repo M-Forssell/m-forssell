@@ -1,4 +1,11 @@
+'use client';
+
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@/lib/i18n';
+import { useFormField } from '@/components/form/formContext';
+import { validateElement } from '@/components/form/validation';
 import styles from './mfDropdown.module.scss';
 
 export type DropdownOption = {
@@ -19,6 +26,7 @@ type DropdownProps = {
 };
 
 const baseClass = 'mf-dropdown';
+const i18n = t();
 
 export default function MfDropdown({
 	label,
@@ -28,10 +36,22 @@ export default function MfDropdown({
 	required = false,
 	disabled = false,
 	defaultValue,
-	error,
+	error: errorProp,
 	className,
 }: DropdownProps) {
 	const cx = classNames.bind(styles);
+	const { error: contextError, setError, clearError } = useFormField(name);
+	const error = errorProp || contextError;
+
+	function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+		if (!error) return;
+		const msg = validateElement(e.target);
+		if (msg) {
+			setError(msg);
+		} else {
+			clearError();
+		}
+	}
 
 	const wrapperClass = cx({
 		[`${className}`]: !!className,
@@ -44,40 +64,55 @@ export default function MfDropdown({
 
 	return (
 		<div className={wrapperClass}>
-			<label htmlFor={selectId} className={cx(`${baseClass}__label`)}>
-				{label}
-				{required && <span aria-hidden="true"> *</span>}
-			</label>
-			<select
-				id={selectId}
-				name={name}
-				required={required}
-				disabled={disabled}
-				defaultValue={defaultValue}
-				className={cx(`${baseClass}__select`)}
-				aria-invalid={!!error}
-				aria-describedby={error ? `${selectId}-error` : undefined}
-			>
-				{placeholder && (
-					<option value="" disabled>
-						{placeholder}
-					</option>
+			<div className={cx(`${baseClass}__label-row`)}>
+				<label htmlFor={selectId} className={cx(`${baseClass}__label`)}>
+					{label}
+					{!required && (
+						<span className={cx(`${baseClass}__optional`)}>
+							{' '}
+							{i18n.form.optional}
+						</span>
+					)}
+				</label>
+				{error && (
+					<span
+						className={cx(`${baseClass}__error-text`)}
+						id={`${selectId}-error`}
+						role="alert"
+					>
+						{error}
+					</span>
 				)}
-				{options.map((option) => (
-					<option key={option.value} value={option.value}>
-						{option.label}
-					</option>
-				))}
-			</select>
-			{error && (
-				<p
-					id={`${selectId}-error`}
-					className={cx(`${baseClass}__error`)}
-					role="alert"
+			</div>
+			<div className={cx(`${baseClass}__select-wrapper`)}>
+				{error && (
+					<span className={cx(`${baseClass}__error-icon`)} aria-hidden="true">
+						<FontAwesomeIcon icon={faCircleExclamation} />
+					</span>
+				)}
+				<select
+					id={selectId}
+					name={name}
+					required={required}
+					disabled={disabled}
+					defaultValue={defaultValue}
+					className={cx(`${baseClass}__select`)}
+					aria-invalid={!!error}
+					aria-describedby={error ? `${selectId}-error` : undefined}
+					onChange={handleChange}
 				>
-					{error}
-				</p>
-			)}
+					{placeholder && (
+						<option value="" disabled>
+							{placeholder}
+						</option>
+					)}
+					{options.map((option) => (
+						<option key={option.value} value={option.value}>
+							{option.label}
+						</option>
+					))}
+				</select>
+			</div>
 		</div>
 	);
 }

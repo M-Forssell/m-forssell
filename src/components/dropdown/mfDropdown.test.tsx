@@ -11,7 +11,7 @@ const options = [
 describe('MfDropdown', () => {
 	it('renders with label', () => {
 		render(<MfDropdown label="Country" name="country" options={options} />);
-		expect(screen.getByLabelText('Country')).toBeInTheDocument();
+		expect(screen.getByLabelText(/Country/)).toBeInTheDocument();
 	});
 
 	it('renders all options', () => {

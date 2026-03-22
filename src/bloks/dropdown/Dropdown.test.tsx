@@ -19,7 +19,7 @@ describe('Dropdown blok', () => {
 
 	it('renders the dropdown with label', () => {
 		render(<Dropdown blok={mockBlok} />);
-		expect(screen.getByLabelText('Country')).toBeInTheDocument();
+		expect(screen.getByLabelText(/Country/)).toBeInTheDocument();
 	});
 
 	it('parses and renders options', () => {

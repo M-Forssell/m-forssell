@@ -13,6 +13,8 @@ const Checkbox = ({ blok }: CheckboxProps) => {
 				label={blok.label}
 				name={blok.name}
 				required={blok.required}
+				linkText={blok.linkText}
+				linkUrl={blok.linkUrl}
 			/>
 		</div>
 	);

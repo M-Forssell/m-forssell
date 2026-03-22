@@ -48,7 +48,7 @@ describe('TextInput blok', () => {
 			name: 'name',
 		};
 		render(<TextInput blok={blokWithoutType} />);
-		const input = screen.getByLabelText('Name');
+		const input = screen.getByLabelText(/Name/);
 		expect(input).toHaveAttribute('type', 'text');
 	});
 });

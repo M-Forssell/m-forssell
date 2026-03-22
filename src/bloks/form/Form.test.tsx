@@ -62,22 +62,13 @@ describe('Form blok', () => {
 			component: 'form',
 		};
 		render(<Form blok={emptyBlok} />);
-		expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: 'Skicka' })).toBeInTheDocument();
 	});
 
-	it('renders success message', () => {
-		const blokWithSuccess: FormBlok = {
-			...mockBlok,
-			successMessage: 'Thank you!',
-		};
-		render(<Form blok={blokWithSuccess} />);
-		expect(screen.getByRole('status')).toHaveTextContent('Thank you!');
-	});
-
-	it('sets up Netlify form attributes', () => {
+	it('sets up form attributes', () => {
 		render(<Form blok={mockBlok} />);
 		const form = document.querySelector('form');
 		expect(form).toHaveAttribute('name', 'contact');
-		expect(form).toHaveAttribute('action', '/__forms.html');
+		expect(form).toHaveAttribute('novalidate');
 	});
 });

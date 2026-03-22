@@ -16,8 +16,6 @@ const Form = ({ blok }: FormProps) => {
 				formName={blok.formName || 'contact'}
 				action={blok.action}
 				submitLabel={blok.submitLabel}
-				successMessage={blok.successMessage}
-				errorMessage={blok.errorMessage}
 			>
 				{blok.fields?.map((fieldBlok) => (
 					<StoryblokServerComponent blok={fieldBlok} key={fieldBlok._uid} />

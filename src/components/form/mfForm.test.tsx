@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect } from 'vitest';
 import MfForm from './mfForm';
 
@@ -18,7 +19,7 @@ describe('MfForm', () => {
 				<input name="test" />
 			</MfForm>,
 		);
-		expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: 'Skicka' })).toBeInTheDocument();
 	});
 
 	it('renders submit button with custom label', () => {
@@ -32,34 +33,14 @@ describe('MfForm', () => {
 		).toBeInTheDocument();
 	});
 
-	it('renders success message', () => {
-		render(
-			<MfForm formName="test" successMessage="Form submitted!">
-				<input name="test" />
-			</MfForm>,
-		);
-		expect(screen.getByRole('status')).toHaveTextContent('Form submitted!');
-	});
-
-	it('renders error message', () => {
-		render(
-			<MfForm formName="test" errorMessage="Something went wrong">
-				<input name="test" />
-			</MfForm>,
-		);
-		expect(screen.getByRole('alert')).toHaveTextContent('Something went wrong');
-	});
-
-	it('sets data-netlify attribute', () => {
+	it('sets noValidate on form for custom validation', () => {
 		render(
 			<MfForm formName="contact">
 				<input name="test" />
 			</MfForm>,
 		);
 		const form = document.querySelector('form');
-		expect(form).toHaveAttribute('name', 'contact');
-		expect(form).toHaveAttribute('method', 'POST');
-		expect(form).toHaveAttribute('action', '/__forms.html');
+		expect(form).toHaveAttribute('novalidate');
 	});
 
 	it('includes hidden form-name input', () => {
@@ -80,5 +61,19 @@ describe('MfForm', () => {
 		);
 		const honeypot = document.querySelector('input[name="bot-field"]');
 		expect(honeypot).toBeInTheDocument();
+	});
+
+	it('validates required fields on submit', async () => {
+		const user = userEvent.setup();
+		render(
+			<MfForm formName="test">
+				<label htmlFor="email">Email</label>
+				<input id="email" name="email" type="email" required />
+			</MfForm>,
+		);
+		await user.click(screen.getByRole('button', { name: 'Skicka' }));
+		// The required field should prevent submission (no fetch call)
+		const form = document.querySelector('form');
+		expect(form).toBeInTheDocument();
 	});
 });

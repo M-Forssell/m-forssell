@@ -5,7 +5,7 @@ import MfTextarea from './mfTextarea';
 describe('MfTextarea', () => {
 	it('renders with label', () => {
 		render(<MfTextarea label="Message" name="message" />);
-		expect(screen.getByLabelText('Message')).toBeInTheDocument();
+		expect(screen.getByLabelText(/Message/)).toBeInTheDocument();
 	});
 
 	it('renders with placeholder', () => {
@@ -35,6 +35,6 @@ describe('MfTextarea', () => {
 
 	it('renders as a textarea element', () => {
 		render(<MfTextarea label="Message" name="message" />);
-		expect(screen.getByLabelText('Message').tagName).toBe('TEXTAREA');
+		expect(screen.getByLabelText(/Message/).tagName).toBe('TEXTAREA');
 	});
 });

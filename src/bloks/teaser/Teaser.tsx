@@ -12,6 +12,7 @@ type TeaserProps = {
 };
 
 const Teaser = ({ blok }: TeaserProps) => {
+	console.warn('teaser blok links:', JSON.stringify(blok.links));
 	const media = blok.media?.filename
 		? blok.media
 		: blok.assets?.filename

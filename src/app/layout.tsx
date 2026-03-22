@@ -42,16 +42,6 @@ export default async function RootLayout({
 				/>
 			</head>
 			<body>
-				{/* Hidden form for Netlify Forms detection at build time */}
-				<form
-					name="contact"
-					data-netlify="true"
-					netlify-honeypot="bot-field"
-					hidden
-				>
-					<input name="form-name" type="hidden" value="contact" />
-					<input name="bot-field" />
-				</form>
 				<StoryblokProvider>
 					<MfHeader />
 					{children}

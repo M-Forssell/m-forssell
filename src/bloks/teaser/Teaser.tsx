@@ -5,6 +5,7 @@ import RichText from '@/components/rich-text/rich-text';
 import Card from '@/components/card/mfCard';
 import HTag from '@/components/hTag/mfHtag';
 import MfLink from '@/components/link/mfLink';
+import { iconMap } from '@/lib/iconMap';
 
 type TeaserProps = {
 	blok: TeaserBlok;
@@ -51,6 +52,25 @@ const Teaser = ({ blok }: TeaserProps) => {
 					{blok.link.title || 'Read more'}
 				</MfLink>
 			)}
+			{blok.links?.map((linkBlok) => {
+				const href =
+					linkBlok.link?.linktype === 'story'
+						? `/${linkBlok.link.cached_url}`
+						: linkBlok.link?.url || '/';
+				const icon = linkBlok.icon ? iconMap[linkBlok.icon] : undefined;
+				return (
+					<MfLink
+						key={linkBlok._uid}
+						href={href}
+						target={linkBlok.link?.target}
+						variant={linkBlok.variant}
+						icon={icon}
+						iconPosition={linkBlok.iconPosition}
+					>
+						{linkBlok.label}
+					</MfLink>
+				);
+			})}
 		</Card>
 	);
 };

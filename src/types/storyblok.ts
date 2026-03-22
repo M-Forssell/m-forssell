@@ -81,6 +81,7 @@ export interface TeaserBlok extends BaseBlok {
 	media?: StoryblokAsset;
 	assets?: StoryblokAsset;
 	link?: StoryblokLink;
+	links?: Array<LinkBlok>;
 	variantExtras?: Array<CardVariantsExtra>;
 }
 

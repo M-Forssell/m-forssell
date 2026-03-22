@@ -3,6 +3,9 @@ import { StoryblokServerComponent } from '@storyblok/react/rsc';
 import type { StoryblokStory as StoryblokStoryType } from '@/types/storyblok';
 import { getStoryblokApi, getStoryblokVersion } from '../../lib/storyblok';
 
+// Ensure Storyblok components are registered before any rendering
+getStoryblokApi();
+
 type PageParams = {
 	params: Promise<{
 		slug?: string[];

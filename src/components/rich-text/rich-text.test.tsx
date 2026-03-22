@@ -245,4 +245,43 @@ describe('RichText', () => {
 		const { container } = render(<RichText content={[]} />);
 		expect(container.firstChild).toBeNull();
 	});
+
+	describe('size variants', () => {
+		const paragraphContent: RichTextNode[] = [
+			{
+				type: 'paragraph',
+				content: [{ type: 'text', text: 'Test' }],
+			},
+		];
+
+		it('applies md size class by default', () => {
+			const { container } = render(<RichText content={paragraphContent} />);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--md');
+		});
+
+		it('applies xs size class', () => {
+			const { container } = render(
+				<RichText content={paragraphContent} size="xs" />,
+			);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--xs');
+		});
+
+		it('applies sm size class', () => {
+			const { container } = render(
+				<RichText content={paragraphContent} size="sm" />,
+			);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--sm');
+		});
+
+		it('applies lg size class', () => {
+			const { container } = render(
+				<RichText content={paragraphContent} size="lg" />,
+			);
+			const wrapper = container.firstChild as HTMLElement;
+			expect(wrapper.className).toContain('richText--lg');
+		});
+	});
 });

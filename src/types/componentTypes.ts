@@ -30,6 +30,7 @@ export const HSize = {
 export type HSizes = (typeof HSize)[keyof typeof HSize];
 
 export const PSize = {
+	xs: 'xs',
 	sm: 'sm',
 	md: 'md',
 	lg: 'lg',

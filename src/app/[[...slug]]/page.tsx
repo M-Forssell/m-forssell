@@ -12,8 +12,8 @@ type PageParams = {
 	}>;
 };
 
-// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
-export const revalidate = 60;
+// In draft mode, always fetch fresh data; in production, revalidate every 60s
+export const revalidate = getStoryblokVersion() === 'draft' ? 0 : 60;
 
 // Generate static params for common routes
 export async function generateStaticParams() {
@@ -39,11 +39,17 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: PageParams) {
 	const { slug } = await params;
+
+	// Reject paths that aren't valid Storyblok slugs (e.g. .well-known)
+	if (slug?.some((segment) => segment.startsWith('.'))) {
+		return notFound();
+	}
+
 	const fullSlug = slug ? slug.join('/') : 'home';
 	const version = getStoryblokVersion();
 	const sbParams = {
 		version,
-		cv: version === 'published' ? Date.now() : undefined,
+		cv: Date.now(),
 	};
 
 	const storyblokApi = getStoryblokApi();

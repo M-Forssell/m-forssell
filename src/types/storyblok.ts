@@ -4,6 +4,7 @@ import type {
 	HeadingLevels,
 	HSizes,
 	IconNames,
+	PSizes,
 } from './componentTypes';
 // Storyblok asset type
 export interface StoryblokAsset {
@@ -147,7 +148,7 @@ export interface TitleBlok extends BaseBlok {
 export interface TextBlok extends BaseBlok {
 	component: 'text';
 	content?: RichTextContent;
-	variant?: string;
+	size?: PSizes;
 }
 
 // Success blok

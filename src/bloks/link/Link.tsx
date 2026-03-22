@@ -22,6 +22,7 @@ const Link = ({ blok }: LinkProps) => {
 				target={blok.link?.target}
 				variant={blok.variant}
 				icon={icon}
+				iconPosition={blok.iconPosition}
 			>
 				{blok.label}
 			</MfLink>

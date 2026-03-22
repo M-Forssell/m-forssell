@@ -10,6 +10,7 @@ type MfLinkProps = {
 	rel?: string;
 	target?: string;
 	icon?: IconDefinition;
+	iconPosition?: 'left' | 'right';
 	variant?: 'contact' | 'outline' | 'cta';
 	showValue?: boolean;
 };
@@ -20,6 +21,7 @@ const MfLink = ({
 	rel,
 	target,
 	icon,
+	iconPosition = 'left',
 	variant,
 	showValue = true,
 }: MfLinkProps) => {
@@ -31,13 +33,15 @@ const MfLink = ({
 		'mfLink--has-icon': !!icon,
 	});
 
+	const iconElement = icon && (
+		<span className={styles['mfLink__icon']}>
+			<FontAwesomeIcon icon={icon} />
+		</span>
+	);
+
 	return (
 		<Link href={href} rel={rel} target={target} className={linkClasses}>
-			{icon && (
-				<span className={styles['mfLink__icon']}>
-					<FontAwesomeIcon icon={icon} />
-				</span>
-			)}
+			{iconPosition === 'left' && iconElement}
 			<span className={styles.mfLink__content}>
 				{variant === 'contact' ? (
 					<>
@@ -52,6 +56,7 @@ const MfLink = ({
 					children
 				)}
 			</span>
+			{iconPosition === 'right' && iconElement}
 		</Link>
 	);
 };

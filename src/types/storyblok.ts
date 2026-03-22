@@ -167,6 +167,7 @@ export interface LinkBlok extends BaseBlok {
 	link: StoryblokLink;
 	variant?: 'outline' | 'cta';
 	icon?: IconNames;
+	iconPosition?: 'left' | 'right';
 }
 
 // Union type of all bloks

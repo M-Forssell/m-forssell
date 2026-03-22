@@ -66,7 +66,7 @@
 	}
 }
 
-a {
+a:not([class]) {
 	color: var(--color-link);
 	transition: opacity 0.2s ease;
 

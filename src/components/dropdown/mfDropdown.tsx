@@ -1,10 +1,15 @@
 import classNames from 'classnames/bind';
-import styles from './mfTextInput.module.scss';
+import styles from './mfDropdown.module.scss';
 
-type TextInputProps = {
+export type DropdownOption = {
+	label: string;
+	value: string;
+};
+
+type DropdownProps = {
 	label: string;
 	name: string;
-	type?: 'text' | 'email' | 'tel' | 'url';
+	options: DropdownOption[];
 	placeholder?: string;
 	required?: boolean;
 	disabled?: boolean;
@@ -13,19 +18,19 @@ type TextInputProps = {
 	className?: string;
 };
 
-const baseClass = 'mf-text-input';
+const baseClass = 'mf-dropdown';
 
-export default function MfTextInput({
+export default function MfDropdown({
 	label,
 	name,
-	type = 'text',
+	options,
 	placeholder,
 	required = false,
 	disabled = false,
 	defaultValue,
 	error,
 	className,
-}: TextInputProps) {
+}: DropdownProps) {
 	const cx = classNames.bind(styles);
 
 	const wrapperClass = cx({
@@ -35,29 +40,38 @@ export default function MfTextInput({
 		[`${baseClass}--disabled`]: disabled,
 	});
 
-	const inputId = `${baseClass}-${name}`;
+	const selectId = `${baseClass}-${name}`;
 
 	return (
 		<div className={wrapperClass}>
-			<label htmlFor={inputId} className={cx(`${baseClass}__label`)}>
+			<label htmlFor={selectId} className={cx(`${baseClass}__label`)}>
 				{label}
 				{required && <span aria-hidden="true"> *</span>}
 			</label>
-			<input
-				id={inputId}
+			<select
+				id={selectId}
 				name={name}
-				type={type}
-				placeholder={placeholder}
 				required={required}
 				disabled={disabled}
 				defaultValue={defaultValue}
-				className={cx(`${baseClass}__input`)}
+				className={cx(`${baseClass}__select`)}
 				aria-invalid={!!error}
-				aria-describedby={error ? `${inputId}-error` : undefined}
-			/>
+				aria-describedby={error ? `${selectId}-error` : undefined}
+			>
+				{placeholder && (
+					<option value="" disabled>
+						{placeholder}
+					</option>
+				)}
+				{options.map((option) => (
+					<option key={option.value} value={option.value}>
+						{option.label}
+					</option>
+				))}
+			</select>
 			{error && (
 				<p
-					id={`${inputId}-error`}
+					id={`${selectId}-error`}
 					className={cx(`${baseClass}__error`)}
 					role="alert"
 				>

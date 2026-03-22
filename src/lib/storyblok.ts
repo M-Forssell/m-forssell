@@ -4,6 +4,12 @@ import Feature from '@/bloks/feature/Feature';
 import Grid from '@/bloks/grid/Grid';
 import Teaser from '@/bloks/teaser/Teaser';
 import Heading from '@/bloks/heading/Heading';
+import TextInput from '@/bloks/text-input/TextInput';
+import Dropdown from '@/bloks/dropdown/Dropdown';
+import Textarea from '@/bloks/textarea/Textarea';
+import Checkbox from '@/bloks/checkbox/Checkbox';
+import Form from '@/bloks/form/Form';
+import Success from '@/bloks/success/Success';
 
 const accessToken = process.env.STORYBLOK_DELIVERY_API_TOKEN;
 const region = process.env.STORYBLOK_REGION || 'eu';
@@ -22,6 +28,12 @@ export const getStoryblokApi = storyblokInit({
 		grid: Grid,
 		teaser: Teaser,
 		heading: Heading,
+		textInput: TextInput,
+		dropdown: Dropdown,
+		textarea: Textarea,
+		checkbox: Checkbox,
+		form: Form,
+		success: Success,
 	},
 	apiOptions: {
 		/** Set the correct region for your space. Learn more: https://www.storyblok.com/docs/packages/storyblok-js#example-region-parameter */

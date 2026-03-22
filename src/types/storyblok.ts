@@ -122,7 +122,7 @@ export interface CheckboxBlok extends BaseBlok {
 	name: string;
 	required?: boolean;
 	linkText?: string;
-	linkUrl?: string;
+	linkUrl?: StoryblokLink;
 }
 
 // Form blok

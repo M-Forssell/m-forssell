@@ -66,6 +66,19 @@
 	}
 }
 
+a {
+	color: var(--color-link);
+	transition: opacity 0.2s ease;
+
+	&:hover {
+		opacity: 0.8;
+	}
+
+	&:visited {
+		color: var(--color-link-visited);
+	}
+}
+
 /* Apply theme colors globally */
 body {
 	background: var(--color-background);

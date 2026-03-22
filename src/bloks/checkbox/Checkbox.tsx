@@ -7,6 +7,11 @@ type CheckboxProps = {
 };
 
 const Checkbox = ({ blok }: CheckboxProps) => {
+	const linkUrl =
+		blok.linkUrl?.linktype === 'story'
+			? `/${blok.linkUrl.cached_url}`
+			: blok.linkUrl?.url;
+
 	return (
 		<div {...storyblokEditable(blok)}>
 			<MfCheckbox
@@ -14,7 +19,7 @@ const Checkbox = ({ blok }: CheckboxProps) => {
 				name={blok.name}
 				required={blok.required}
 				linkText={blok.linkText}
-				linkUrl={blok.linkUrl}
+				linkUrl={linkUrl}
 			/>
 		</div>
 	);

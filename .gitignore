@@ -44,3 +44,7 @@ next-env.d.ts
 .netlify
 .vscode/settings.json
 .claude/
+
+# storyblok
+.storyblok/
+storyblok-components-*

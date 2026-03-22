@@ -77,6 +77,7 @@ export const IconName = {
 	arrowTrendUp: 'arrow-trend-up',
 	shield: 'shield',
 	clapperboard: 'clapperboard',
+	arrowRight: 'arrow-right',
 } as const;
 
 export type IconNames = (typeof IconName)[keyof typeof IconName];

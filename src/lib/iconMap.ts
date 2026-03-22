@@ -10,6 +10,7 @@ import {
 	faArrowTrendUp,
 	faShield,
 	faClapperboard,
+	faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 import type { IconNames } from '@/types/componentTypes';
 import { IconName } from '@/types/componentTypes';
@@ -29,4 +30,5 @@ export const iconMap: Record<IconNames, IconDefinition> = {
 	[IconName.arrowTrendUp]: faArrowTrendUp,
 	[IconName.shield]: faShield,
 	[IconName.clapperboard]: faClapperboard,
+	[IconName.arrowRight]: faArrowRight,
 };

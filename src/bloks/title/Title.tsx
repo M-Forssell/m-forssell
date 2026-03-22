@@ -22,9 +22,12 @@ const Title = ({ blok }: TitleProps) => {
 
 	return (
 		<div {...storyblokEditable(blok)}>
-			<HTag tag={blok.level || 'h1'} size={blok.size || 'lg'}>
+			<HTag
+				tag={blok.level || 'h1'}
+				size={blok.size || 'lg'}
+				suffix={blok.Suffix || undefined}
+			>
 				{blok.Title}
-				{blok.Suffix && <span>{blok.Suffix}</span>}
 			</HTag>
 		</div>
 	);

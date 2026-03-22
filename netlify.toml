@@ -5,6 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+[context.production.environment]
   STORYBLOK_VERSION = "published"
 
 [context.deploy-preview.environment]

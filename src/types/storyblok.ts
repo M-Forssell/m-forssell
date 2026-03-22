@@ -83,8 +83,76 @@ export interface TeaserBlok extends BaseBlok {
 	variantExtras?: Array<CardVariantsExtra>;
 }
 
+// TextInput blok
+export interface TextInputBlok extends BaseBlok {
+	component: 'textInput';
+	label: string;
+	name: string;
+	type?: 'text' | 'email' | 'tel' | 'url';
+	placeholder?: string;
+	required?: boolean;
+}
+
+// Dropdown blok
+export interface DropdownBlok extends BaseBlok {
+	component: 'dropdown';
+	label: string;
+	name: string;
+	options: string;
+	placeholder?: string;
+	required?: boolean;
+}
+
+// Textarea blok
+export interface TextareaBlok extends BaseBlok {
+	component: 'textarea';
+	label: string;
+	name: string;
+	placeholder?: string;
+	required?: boolean;
+	rows?: number;
+}
+
+// Checkbox blok
+export interface CheckboxBlok extends BaseBlok {
+	component: 'checkbox';
+	label: string;
+	name: string;
+	required?: boolean;
+}
+
+// Form blok
+export interface FormBlok extends BaseBlok {
+	component: 'form';
+	formName?: string;
+	action?: string;
+	submitLabel?: string;
+	successMessage?: string;
+	errorMessage?: string;
+	fields?: Array<TextInputBlok | DropdownBlok | TextareaBlok | CheckboxBlok>;
+}
+
+// Success blok
+export interface SuccessBlok extends BaseBlok {
+	component: 'success';
+	title: string;
+	headingLevel?: HeadingLevels;
+	content?: RichTextContent;
+	image?: StoryblokAsset;
+}
+
 // Union type of all bloks
-export type AnyBlok = PageBlok | FeatureBlok | GridBlok | TeaserBlok;
+export type AnyBlok =
+	| PageBlok
+	| FeatureBlok
+	| GridBlok
+	| TeaserBlok
+	| TextInputBlok
+	| DropdownBlok
+	| TextareaBlok
+	| CheckboxBlok
+	| FormBlok
+	| SuccessBlok;
 
 // Global/Footer content type
 export interface GlobalContent {

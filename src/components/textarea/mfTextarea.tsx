@@ -1,31 +1,31 @@
 import classNames from 'classnames/bind';
-import styles from './mfTextInput.module.scss';
+import styles from './mfTextarea.module.scss';
 
-type TextInputProps = {
+type TextareaProps = {
 	label: string;
 	name: string;
-	type?: 'text' | 'email' | 'tel' | 'url';
 	placeholder?: string;
 	required?: boolean;
 	disabled?: boolean;
 	defaultValue?: string;
 	error?: string;
 	className?: string;
+	rows?: number;
 };
 
-const baseClass = 'mf-text-input';
+const baseClass = 'mf-textarea';
 
-export default function MfTextInput({
+export default function MfTextarea({
 	label,
 	name,
-	type = 'text',
 	placeholder,
 	required = false,
 	disabled = false,
 	defaultValue,
 	error,
 	className,
-}: TextInputProps) {
+	rows = 4,
+}: TextareaProps) {
 	const cx = classNames.bind(styles);
 
 	const wrapperClass = cx({
@@ -35,29 +35,29 @@ export default function MfTextInput({
 		[`${baseClass}--disabled`]: disabled,
 	});
 
-	const inputId = `${baseClass}-${name}`;
+	const textareaId = `${baseClass}-${name}`;
 
 	return (
 		<div className={wrapperClass}>
-			<label htmlFor={inputId} className={cx(`${baseClass}__label`)}>
+			<label htmlFor={textareaId} className={cx(`${baseClass}__label`)}>
 				{label}
 				{required && <span aria-hidden="true"> *</span>}
 			</label>
-			<input
-				id={inputId}
+			<textarea
+				id={textareaId}
 				name={name}
-				type={type}
 				placeholder={placeholder}
 				required={required}
 				disabled={disabled}
 				defaultValue={defaultValue}
-				className={cx(`${baseClass}__input`)}
+				rows={rows}
+				className={cx(`${baseClass}__textarea`)}
 				aria-invalid={!!error}
-				aria-describedby={error ? `${inputId}-error` : undefined}
+				aria-describedby={error ? `${textareaId}-error` : undefined}
 			/>
 			{error && (
 				<p
-					id={`${inputId}-error`}
+					id={`${textareaId}-error`}
 					className={cx(`${baseClass}__error`)}
 					role="alert"
 				>

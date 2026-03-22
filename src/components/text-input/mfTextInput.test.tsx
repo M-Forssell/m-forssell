@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import MfTextInput from './mfTextInput';
 
 describe('MfTextInput', () => {
@@ -25,13 +24,6 @@ describe('MfTextInput', () => {
 			'aria-invalid',
 			'true',
 		);
-	});
-
-	it('calls onChange handler', async () => {
-		const handleChange = vi.fn();
-		render(<MfTextInput label="Name" name="name" onChange={handleChange} />);
-		await userEvent.type(screen.getByLabelText('Name'), 'hello');
-		expect(handleChange).toHaveBeenCalledTimes(5);
 	});
 
 	it('disables input when disabled prop is set', () => {

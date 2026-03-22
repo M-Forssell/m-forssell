@@ -14,7 +14,7 @@ const Form = ({ blok }: FormProps) => {
 		<div {...storyblokEditable(blok)}>
 			<MfForm
 				formName={blok.formName || 'contact'}
-				action={blok.action}
+				redirectTo={blok.action}
 				submitLabel={blok.submitLabel}
 			>
 				{blok.fields?.map((fieldBlok) => (

@@ -10,7 +10,7 @@ import { validateElement } from './validation';
 type FormProps = {
 	children: React.ReactNode;
 	formName: string;
-	action?: string;
+	redirectTo?: string;
 	submitLabel?: string;
 	className?: string;
 };
@@ -21,7 +21,7 @@ const i18n = t();
 export default function MfForm({
 	children,
 	formName,
-	action,
+	redirectTo,
 	submitLabel,
 	className,
 }: FormProps) {
@@ -90,7 +90,7 @@ export default function MfForm({
 		const formData = new FormData(form);
 
 		try {
-			const response = await fetch(action || '/__forms.html', {
+			const response = await fetch('/__forms.html', {
 				method: 'POST',
 				body: formData,
 			});
@@ -100,11 +100,15 @@ export default function MfForm({
 				return;
 			}
 
-			const redirectUrl = response.redirected
-				? response.url
-				: response.headers.get('Location');
-			if (redirectUrl) {
-				window.location.href = redirectUrl;
+			if (redirectTo) {
+				window.location.href = redirectTo;
+			} else {
+				const redirectUrl = response.redirected
+					? response.url
+					: response.headers.get('Location');
+				if (redirectUrl) {
+					window.location.href = redirectUrl;
+				}
 			}
 		} catch (err) {
 			setSubmitError(

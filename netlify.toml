@@ -7,5 +7,11 @@
   NODE_VERSION = "22"
   STORYBLOK_VERSION = "published"
 
+[context.deploy-preview.environment]
+  STORYBLOK_VERSION = "draft"
+
+[context.branch-deploy.environment]
+  STORYBLOK_VERSION = "draft"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"

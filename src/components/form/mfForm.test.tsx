@@ -57,9 +57,9 @@ describe('MfForm', () => {
 			</MfForm>,
 		);
 		const form = document.querySelector('form');
-		expect(form).toHaveAttribute('data-netlify', 'true');
 		expect(form).toHaveAttribute('name', 'contact');
 		expect(form).toHaveAttribute('method', 'POST');
+		expect(form).toHaveAttribute('action', '/__forms.html');
 	});
 
 	it('includes hidden form-name input', () => {

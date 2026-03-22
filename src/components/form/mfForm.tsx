@@ -34,9 +34,7 @@ export default function MfForm({
 			className={formClass}
 			name={formName}
 			method="POST"
-			action={action}
-			data-netlify="true"
-			netlify-honeypot="bot-field"
+			action={action || '/__forms.html'}
 		>
 			<input type="hidden" name="form-name" value={formName} />
 			<p hidden>

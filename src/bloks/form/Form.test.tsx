@@ -77,7 +77,7 @@ describe('Form blok', () => {
 	it('sets up Netlify form attributes', () => {
 		render(<Form blok={mockBlok} />);
 		const form = document.querySelector('form');
-		expect(form).toHaveAttribute('data-netlify', 'true');
 		expect(form).toHaveAttribute('name', 'contact');
+		expect(form).toHaveAttribute('action', '/__forms.html');
 	});
 });

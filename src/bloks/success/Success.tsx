@@ -1,4 +1,7 @@
-import { storyblokEditable } from '@storyblok/react/rsc';
+import {
+	storyblokEditable,
+	StoryblokServerComponent,
+} from '@storyblok/react/rsc';
 import type { SuccessBlok } from '@/types/storyblok';
 import MfSuccess from '@/components/success/mfSuccess';
 
@@ -18,7 +21,12 @@ const Success = ({ blok }: SuccessProps) => {
 						? { filename: blok.image.filename, alt: blok.image.alt }
 						: undefined
 				}
-			/>
+			>
+				{Array.isArray(blok.body) &&
+					blok.body.map((nestedBlok) => (
+						<StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+					))}
+			</MfSuccess>
 		</div>
 	);
 };

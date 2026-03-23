@@ -15,6 +15,7 @@ type SuccessProps = {
 		alt: string | null;
 	};
 	className?: string;
+	children?: React.ReactNode;
 };
 
 const baseClass = 'mf-success';
@@ -25,6 +26,7 @@ export default function MfSuccess({
 	content,
 	image,
 	className,
+	children,
 }: SuccessProps) {
 	const cx = classNames.bind(styles);
 
@@ -46,10 +48,9 @@ export default function MfSuccess({
 			)}
 			<HTag tag={headingLevel}>{title}</HTag>
 			{content && content.length > 0 && (
-				<div className={cx(`${baseClass}__text`)}>
-					<RichText content={content} />
-				</div>
+				<RichText content={content} className={cx(`${baseClass}__text`)} />
 			)}
+			{children}
 		</div>
 	);
 }

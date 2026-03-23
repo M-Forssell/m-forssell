@@ -161,6 +161,7 @@ export interface SuccessBlok extends BaseBlok {
 	headingLevel?: HeadingLevels;
 	content?: RichTextContent;
 	image?: StoryblokAsset;
+	body?: AnyBlok[];
 }
 
 // Link blok

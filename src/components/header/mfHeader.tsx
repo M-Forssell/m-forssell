@@ -54,7 +54,11 @@ const MfHeader = async () => {
 		<header className={styles.mfHeader}>
 			<div className={styles['mfHeader__content']}>
 				<Link
-					href={global?.story?.content.homeLink?.cached_url || '/'}
+					href={
+						global?.story?.content.homeLink?.linktype === 'story'
+							? '/'
+							: global?.story?.content.homeLink?.cached_url || '/'
+					}
 					aria-label={
 						stringifyHeaderTitle(global?.story?.content.headerTitle) ||
 						'M Forssell — Home'

@@ -12,12 +12,7 @@ type TeaserProps = {
 };
 
 const Teaser = ({ blok }: TeaserProps) => {
-	console.warn('teaser blok links:', JSON.stringify(blok.links));
-	const media = blok.media?.filename
-		? blok.media
-		: blok.assets?.filename
-			? blok.assets
-			: null;
+	const media = blok.media?.filename ? blok.media : null;
 
 	return (
 		<Card
@@ -44,14 +39,6 @@ const Teaser = ({ blok }: TeaserProps) => {
 			</HTag>
 			{blok.content && Array.isArray(blok.content.content) && (
 				<RichText content={blok.content.content} />
-			)}
-			{blok.link?.url && (
-				<MfLink
-					href={blok.link.cached_url || blok.link.url}
-					target={blok.link.target}
-				>
-					{blok.link.title || 'Read more'}
-				</MfLink>
 			)}
 			{blok.links?.map((linkBlok) => {
 				const href =

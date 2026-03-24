@@ -11,6 +11,10 @@
 	border-bottom: 0.063rem solid var(--color-border);
 
 	&__content {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		width: 100%;
 		max-width: device-width.$content-width-max;
 		margin: 0 auto;

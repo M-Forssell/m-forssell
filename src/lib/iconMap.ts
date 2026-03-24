@@ -11,7 +11,10 @@ import {
 	faShield,
 	faClapperboard,
 	faArrowRight,
+	faEnvelope,
+	faPhone,
 } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import type { IconNames } from '@/types/componentTypes';
 import { IconName } from '@/types/componentTypes';
 
@@ -31,4 +34,7 @@ export const iconMap: Record<IconNames, IconDefinition> = {
 	[IconName.shield]: faShield,
 	[IconName.clapperboard]: faClapperboard,
 	[IconName.arrowRight]: faArrowRight,
+	[IconName.envelope]: faEnvelope,
+	[IconName.phone]: faPhone,
+	[IconName.linkedin]: faLinkedin,
 };

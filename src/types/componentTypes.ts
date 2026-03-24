@@ -78,6 +78,9 @@ export const IconName = {
 	shield: 'shield',
 	clapperboard: 'clapperboard',
 	arrowRight: 'arrow-right',
+	envelope: 'envelope',
+	phone: 'phone',
+	linkedin: 'linkedin',
 } as const;
 
 export type IconNames = (typeof IconName)[keyof typeof IconName];

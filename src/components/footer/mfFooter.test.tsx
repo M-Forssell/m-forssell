@@ -9,43 +9,63 @@ vi.mock('@/lib/storyblok', () => ({
 	getStoryblokVersion: () => 'draft',
 }));
 
+// Mock storyblokEditable (used by Link blok)
+vi.mock('@storyblok/react/rsc', () => ({
+	storyblokEditable: () => ({}),
+}));
+
 // Mock ThemeToggle since it uses client-side hooks
 vi.mock('@/components/theme-toggle/theme-toggle', () => ({
 	default: () => <button>Toggle Theme</button>,
 }));
 
-const mockGlobalContent = {
+const mockFooterContent = {
 	data: {
 		story: {
 			content: {
-				title: 'Kontakt',
-				headingLevel: 'h2',
-				headingSize: 'md',
-				titleSuffix: 'oss',
-				email: { url: 'mailto:info@test.se', title: 'E-post' },
-				phone: { url: 'tel:+46701234567', title: 'Telefon' },
-				social: {
-					url: 'https://linkedin.com',
-					title: 'LinkedIn',
-					target: '_blank',
-				},
+				links: [
+					{
+						_uid: 'link-1',
+						component: 'link',
+						label: 'E-post',
+						link: {
+							url: 'mailto:info@test.se',
+							linktype: 'url',
+							cached_url: '',
+						},
+						variant: 'contact',
+						icon: 'envelope',
+					},
+					{
+						_uid: 'link-2',
+						component: 'link',
+						label: 'Telefon',
+						link: { url: 'tel:+46701234567', linktype: 'url', cached_url: '' },
+						variant: 'contact',
+						icon: 'phone',
+					},
+					{
+						_uid: 'link-3',
+						component: 'link',
+						label: 'LinkedIn',
+						link: {
+							url: 'https://linkedin.com',
+							linktype: 'url',
+							cached_url: '',
+							target: '_blank',
+						},
+						variant: 'contact',
+						icon: 'linkedin',
+					},
+				],
 			},
 		},
 	},
 };
 
 describe('MfFooter', () => {
-	it('renders footer with title from CMS', async () => {
-		mockGet.mockResolvedValue(mockGlobalContent);
-
-		const Component = await MfFooter();
-		render(Component);
-
-		expect(screen.getByText('Kontakt')).toBeInTheDocument();
-	});
-
-	it('renders contact links', async () => {
-		mockGet.mockResolvedValue(mockGlobalContent);
+	it('renders contact links from link bloks', async () => {
+		mockGet.mockResolvedValue(mockFooterContent);
 
 		const Component = await MfFooter();
 		render(Component);
@@ -56,7 +76,7 @@ describe('MfFooter', () => {
 	});
 
 	it('renders email link with correct href', async () => {
-		mockGet.mockResolvedValue(mockGlobalContent);
+		mockGet.mockResolvedValue(mockFooterContent);
 
 		const Component = await MfFooter();
 		const { container } = render(Component);
@@ -68,28 +88,18 @@ describe('MfFooter', () => {
 		expect(emailLink).toBeInTheDocument();
 	});
 
-	it('renders fallback title when API fails', async () => {
+	it('renders empty footer when API fails', async () => {
 		mockGet.mockRejectedValue(new Error('API error'));
 
 		const Component = await MfFooter();
-		render(Component);
+		const { container } = render(Component);
 
-		expect(screen.getByText('Footer')).toBeInTheDocument();
-	});
-
-	it('renders fallback links when API fails', async () => {
-		mockGet.mockRejectedValue(new Error('API error'));
-
-		const Component = await MfFooter();
-		render(Component);
-
-		expect(screen.getByText('Email')).toBeInTheDocument();
-		expect(screen.getByText('Phone')).toBeInTheDocument();
-		expect(screen.getByText('Social')).toBeInTheDocument();
+		expect(container.querySelector('footer')).toBeInTheDocument();
+		expect(container.querySelectorAll('a')).toHaveLength(0);
 	});
 
 	it('renders theme toggle in non-production', async () => {
-		mockGet.mockResolvedValue(mockGlobalContent);
+		mockGet.mockResolvedValue(mockFooterContent);
 
 		const Component = await MfFooter();
 		render(Component);

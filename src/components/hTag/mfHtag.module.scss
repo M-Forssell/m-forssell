@@ -21,6 +21,8 @@
 
 	&--md {
 		@include typography.fluid-font(1.25rem, 2rem);
+
+		margin-bottom: 0.4em;
 	}
 
 	&--lg {

@@ -46,7 +46,7 @@ const MfLink = ({
 				{variant === 'contact' ? (
 					<>
 						<span className={cx('mfLink--contact__label')}>{children}</span>
-						{showValue && (
+						{showValue && /^(mailto:|tel:)/.test(href) && (
 							<span className={cx('mfLink--contact__value link-value')}>
 								{href.replace(/^(mailto:|tel:)/, '')}
 							</span>

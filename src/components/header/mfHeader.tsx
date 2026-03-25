@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import SvgLogo from '@/components/logo/SvgLogo';
+import MfNavigation from '@/components/navigation/mfNavigation';
 import type {
 	StoryblokApiResponse,
-	GlobalContent,
+	HeaderContent,
 	RichTextContent,
 } from '@/types/storyblok';
 import type {
@@ -30,8 +31,8 @@ const extractTextFromNode = (
 const MfHeader = async () => {
 	// Get storyblok content global
 
-	const global: StoryblokApiResponse<GlobalContent> | null = await storyblokApi
-		.get('cdn/stories/global/header', {
+	const global: StoryblokApiResponse<HeaderContent> | null = await storyblokApi
+		.get('cdn/stories/site/header', {
 			version: getStoryblokVersion(),
 		})
 		.then((response) => {
@@ -54,7 +55,11 @@ const MfHeader = async () => {
 		<header className={styles.mfHeader}>
 			<div className={styles['mfHeader__content']}>
 				<Link
-					href={global?.story?.content.homeLink?.cached_url || '/'}
+					href={
+						global?.story?.content.homeLink?.linktype === 'story'
+							? '/'
+							: global?.story?.content.homeLink?.cached_url || '/'
+					}
 					aria-label={
 						stringifyHeaderTitle(global?.story?.content.headerTitle) ||
 						'M Forssell — Home'
@@ -72,6 +77,7 @@ const MfHeader = async () => {
 						</span>
 					)}
 				</Link>
+				<MfNavigation links={global?.story?.content.navigation || []} />
 			</div>
 		</header>
 	);

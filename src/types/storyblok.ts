@@ -79,8 +79,6 @@ export interface TeaserBlok extends BaseBlok {
 	variant?: CardVariants;
 	content?: RichTextContent;
 	media?: StoryblokAsset;
-	assets?: StoryblokAsset;
-	link?: StoryblokLink;
 	links?: Array<LinkBlok>;
 	variantExtras?: Array<CardVariantsExtra>;
 }
@@ -161,6 +159,7 @@ export interface SuccessBlok extends BaseBlok {
 	headingLevel?: HeadingLevels;
 	content?: RichTextContent;
 	image?: StoryblokAsset;
+	body?: AnyBlok[];
 }
 
 // Link blok
@@ -168,7 +167,7 @@ export interface LinkBlok extends BaseBlok {
 	component: 'link';
 	label: string;
 	link: StoryblokLink;
-	variant?: 'outline' | 'cta';
+	variant?: 'outline' | 'cta' | 'contact';
 	icon?: IconNames;
 	iconPosition?: 'left' | 'right';
 }
@@ -189,17 +188,17 @@ export type AnyBlok =
 	| SuccessBlok
 	| LinkBlok;
 
-// Global/Footer content type
-export interface GlobalContent {
+// Header content type
+export interface HeaderContent {
 	headerTitle?: RichTextContent;
 	homeLink?: StoryblokLink;
-	email?: StoryblokLink;
-	phone?: StoryblokLink;
-	address?: string;
-	social?: StoryblokLink;
-	[key: string]: unknown;
+	navigation?: LinkBlok[];
 }
 
+// Footer content type
+export interface FooterContent {
+	links?: LinkBlok[];
+}
 // Story metadata
 export interface StoryblokStory<Content = AnyBlok> {
 	id: number;
